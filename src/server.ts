@@ -1,18 +1,18 @@
-import express, { Request, Response } from "express";
+import app, { PORT } from "./app";
 
-const app = express();
-const PORT = process.env.PORT || 5000;
+// app.listen(PORT, () => {
+//   console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`);
+// });
 
-// Middleware to parse incoming JSON payloads
-app.use(express.json());
+const bootstrap = () => {
+  try {
+    app.listen(PORT, () => {
+      console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`);
+    });
+  } catch (error) {
+    console.error("Error starting the server:", error);
+    process.exit(1); // Exit with failure code
+  }
+};
 
-// Sample Route with Explicit TypeScript Types
-app.get("/", (req: Request, res: Response) => {
-  res.json({
-    message: "Hello, your updated TypeScript Express server is running!",
-  });
-});
-
-app.listen(PORT, () => {
-  console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`);
-});
+bootstrap();
