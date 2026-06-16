@@ -51,6 +51,10 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
+  Admin: 'Admin',
+  Patient: 'Patient',
+  patientPrescriptions: 'patientPrescriptions',
+  Prescription: 'Prescription',
   Psychologist: 'Psychologist'
 } as const
 
@@ -70,6 +74,62 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+export const AdminScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  password: 'password',
+  role: 'role',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AdminScalarFieldEnum = (typeof AdminScalarFieldEnum)[keyof typeof AdminScalarFieldEnum]
+
+
+export const PatientScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  profilePhoto: 'profilePhoto',
+  password: 'password',
+  address: 'address',
+  prescription: 'prescription',
+  contactNumber: 'contactNumber',
+  role: 'role',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deleted: 'deleted',
+  deletedAt: 'deletedAt'
+} as const
+
+export type PatientScalarFieldEnum = (typeof PatientScalarFieldEnum)[keyof typeof PatientScalarFieldEnum]
+
+
+export const PatientPrescriptionsScalarFieldEnum = {
+  psychologistId: 'psychologistId',
+  patientId: 'patientId',
+  prescriptionId: 'prescriptionId'
+} as const
+
+export type PatientPrescriptionsScalarFieldEnum = (typeof PatientPrescriptionsScalarFieldEnum)[keyof typeof PatientPrescriptionsScalarFieldEnum]
+
+
+export const PrescriptionScalarFieldEnum = {
+  id: 'id',
+  patientId: 'patientId',
+  psychologistId: 'psychologistId',
+  medication: 'medication',
+  exercise: 'exercise',
+  duration: 'duration',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PrescriptionScalarFieldEnum = (typeof PrescriptionScalarFieldEnum)[keyof typeof PrescriptionScalarFieldEnum]
+
+
 export const PsychologistScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -80,6 +140,8 @@ export const PsychologistScalarFieldEnum = {
   contactNumber: 'contactNumber',
   verified: 'verified',
   sector: 'sector',
+  availability: 'availability',
+  appointmentFee: 'appointmentFee',
   qualification: 'qualification',
   licenseId: 'licenseId',
   experience: 'experience',
@@ -102,6 +164,14 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const NullableJsonNullValueInput = {
+  DbNull: DbNull,
+  JsonNull: JsonNull
+} as const
+
+export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
@@ -116,4 +186,13 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
