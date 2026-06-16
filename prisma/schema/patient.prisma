@@ -1,0 +1,31 @@
+model Patient {
+    id                   String                 @id @default(uuid())
+    name                 String
+    email                String                 @unique
+    profilePhoto         String?
+    password             String
+    address              String?
+    prescription         String?
+    contactNumber        String?                @unique
+    role                 UserRoles              @default(PATIENT)
+    createdAt            DateTime               @default(now())
+    updatedAt            DateTime               @updatedAt
+    deleted              Boolean                @default(false)
+    deletedAt            DateTime?
+    patientPrescriptions patientPrescriptions[]
+    prescriptions        Prescription[]
+
+    @@index([email, contactNumber])
+    @@map("patients")
+}
+
+model patientPrescriptions {
+    psychologistId String
+    psychologist   Psychologist @relation(fields: [psychologistId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    patientId      String
+    prescriptionId String
+    patient        Patient      @relation(fields: [patientId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+    @@id([patientId, prescriptionId])
+    @@map("patient_prescriptions")
+}

@@ -1,0 +1,16 @@
+model Prescription {
+    id             String       @id @default(uuid())
+    patientId      String
+    patient        Patient      @relation(fields: [patientId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    psychologistId String
+    psychologist   Psychologist @relation(fields: [psychologistId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    medication     String
+    exercise       String
+    duration       String
+    notes          String?
+    createdAt      DateTime     @default(now())
+    updatedAt      DateTime     @updatedAt
+
+    @@index([patientId, psychologistId])
+    @@map("prescriptions")
+}

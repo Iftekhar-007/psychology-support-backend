@@ -1,0 +1,12 @@
+enum UserRoles {
+    USER
+    ADMIN
+    PATIENT
+    PSYCHOLOGIST
+}
+
+enum PsychologistStatus {
+    FEATURED
+    REGULAR
+    DELETED
+}

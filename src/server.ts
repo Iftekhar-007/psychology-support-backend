@@ -1,9 +1,5 @@
 import app, { PORT } from "./app";
 
-// app.listen(PORT, () => {
-//   console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`);
-// });
-
 const bootstrap = () => {
   try {
     app.listen(PORT, () => {

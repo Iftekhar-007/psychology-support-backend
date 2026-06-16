@@ -20,7 +20,7 @@ const config: runtime.GetPrismaClientConfig = {
   "clientVersion": "7.8.0",
   "engineVersion": "3c6e192761c0362d496ed980de936e2f3cebcd3a",
   "activeProvider": "postgresql",
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Get a free hosted Postgres database in seconds: `npx create-db`\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n",
+  "inlineSchema": "enum UserRoles {\n  USER\n  ADMIN\n  PATIENT\n  PSYCHOLOGIST\n}\n\nenum PsychologistStatus {\n  FEATURED\n  REGULAR\n  DELETED\n}\n\nmodel Psychologist {\n  id            String             @id @default(uuid())\n  name          String\n  email         String             @unique\n  profilePhoto  String?\n  password      String\n  address       String?\n  contactNumber String?            @unique\n  verified      Boolean            @default(false)\n  sector        String?\n  qualification String\n  licenseId     String             @unique\n  experience    Int\n  role          UserRoles          @default(PSYCHOLOGIST)\n  status        PsychologistStatus @default(REGULAR)\n  createdAt     DateTime           @default(now())\n  updatedAt     DateTime           @updatedAt\n  deleted       Boolean            @default(false)\n  deletedAt     DateTime?\n\n  @@index([email, contactNumber, licenseId])\n  @@map(\"psychologists\")\n}\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"../../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
@@ -32,10 +32,10 @@ const config: runtime.GetPrismaClientConfig = {
   }
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Psychologist\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"profilePhoto\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"address\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"contactNumber\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"verified\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"sector\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"qualification\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"licenseId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"experience\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"role\",\"kind\":\"enum\",\"type\":\"UserRoles\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"PsychologistStatus\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"deleted\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"deletedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":\"psychologists\"}},\"enums\":{},\"types\":{}}")
 config.parameterizationSchema = {
-  strings: JSON.parse("[]"),
-  graph: "AAAA"
+  strings: JSON.parse("[\"where\",\"Psychologist.findUnique\",\"Psychologist.findUniqueOrThrow\",\"orderBy\",\"cursor\",\"Psychologist.findFirst\",\"Psychologist.findFirstOrThrow\",\"Psychologist.findMany\",\"data\",\"Psychologist.createOne\",\"Psychologist.createMany\",\"Psychologist.createManyAndReturn\",\"Psychologist.updateOne\",\"Psychologist.updateMany\",\"Psychologist.updateManyAndReturn\",\"create\",\"update\",\"Psychologist.upsertOne\",\"Psychologist.deleteOne\",\"Psychologist.deleteMany\",\"having\",\"_count\",\"_avg\",\"_sum\",\"_min\",\"_max\",\"Psychologist.groupBy\",\"Psychologist.aggregate\",\"AND\",\"OR\",\"NOT\",\"id\",\"name\",\"email\",\"profilePhoto\",\"password\",\"address\",\"contactNumber\",\"verified\",\"sector\",\"qualification\",\"licenseId\",\"experience\",\"UserRoles\",\"role\",\"PsychologistStatus\",\"status\",\"createdAt\",\"updatedAt\",\"deleted\",\"deletedAt\",\"equals\",\"in\",\"notIn\",\"lt\",\"lte\",\"gt\",\"gte\",\"not\",\"contains\",\"startsWith\",\"endsWith\",\"set\",\"increment\",\"decrement\",\"multiply\",\"divide\"]"),
+  graph: "SwsQFRwAADUAMB0AAAQAEB4AADUAMB8BAAAAASABADYAISEBAAAAASIBADcAISMBADYAISQBADcAISUBAAAAASYgADgAIScBADcAISgBADYAISkBAAAAASoCADkAISwAADosIi4AADsuIi9AADwAITBAADwAITEgADgAITJAAD0AIQEAAAABACABAAAAAQAgFRwAADUAMB0AAAQAEB4AADUAMB8BADYAISABADYAISEBADYAISIBADcAISMBADYAISQBADcAISUBADcAISYgADgAIScBADcAISgBADYAISkBADYAISoCADkAISwAADosIi4AADsuIi9AADwAITBAADwAITEgADgAITJAAD0AIQUiAAA-ACAkAAA-ACAlAAA-ACAnAAA-ACAyAAA-ACADAAAABAAgAwAABQAwBAAAAQAgAwAAAAQAIAMAAAUAMAQAAAEAIAMAAAAEACADAAAFADAEAAABACASHwEAAAABIAEAAAABIQEAAAABIgEAAAABIwEAAAABJAEAAAABJQEAAAABJiAAAAABJwEAAAABKAEAAAABKQEAAAABKgIAAAABLAAAACwCLgAAAC4CL0AAAAABMEAAAAABMSAAAAABMkAAAAABAQgAAAkAIBIfAQAAAAEgAQAAAAEhAQAAAAEiAQAAAAEjAQAAAAEkAQAAAAElAQAAAAEmIAAAAAEnAQAAAAEoAQAAAAEpAQAAAAEqAgAAAAEsAAAALAIuAAAALgIvQAAAAAEwQAAAAAExIAAAAAEyQAAAAAEBCAAACwAwAQgAAAsAMBIfAQBEACEgAQBEACEhAQBEACEiAQBFACEjAQBEACEkAQBFACElAQBFACEmIABGACEnAQBFACEoAQBEACEpAQBEACEqAgBHACEsAABILCIuAABJLiIvQABKACEwQABKACExIABGACEyQABLACECAAAAAQAgCAAADgAgEh8BAEQAISABAEQAISEBAEQAISIBAEUAISMBAEQAISQBAEUAISUBAEUAISYgAEYAIScBAEUAISgBAEQAISkBAEQAISoCAEcAISwAAEgsIi4AAEkuIi9AAEoAITBAAEoAITEgAEYAITJAAEsAIQIAAAAEACAIAAAQACACAAAABAAgCAAAEAAgAwAAAAEAIA8AAAkAIBAAAA4AIAEAAAABACABAAAABAAgChUAAD8AIBYAAEAAIBcAAEMAIBgAAEIAIBkAAEEAICIAAD4AICQAAD4AICUAAD4AICcAAD4AIDIAAD4AIBUcAAAaADAdAAAXABAeAAAaADAfAQAbACEgAQAbACEhAQAbACEiAQAcACEjAQAbACEkAQAcACElAQAcACEmIAAdACEnAQAcACEoAQAbACEpAQAbACEqAgAeACEsAAAfLCIuAAAgLiIvQAAhACEwQAAhACExIAAdACEyQAAiACEDAAAABAAgAwAAFgAwFAAAFwAgAwAAAAQAIAMAAAUAMAQAAAEAIBUcAAAaADAdAAAXABAeAAAaADAfAQAbACEgAQAbACEhAQAbACEiAQAcACEjAQAbACEkAQAcACElAQAcACEmIAAdACEnAQAcACEoAQAbACEpAQAbACEqAgAeACEsAAAfLCIuAAAgLiIvQAAhACEwQAAhACExIAAdACEyQAAiACEOFQAAJwAgGAAANAAgGQAANAAgMwEAAAABNAEAAAAENQEAAAAENgEAAAABNwEAAAABOAEAAAABOQEAAAABOgEAMwAhOwEAAAABPAEAAAABPQEAAAABDhUAACQAIBgAADIAIBkAADIAIDMBAAAAATQBAAAABTUBAAAABTYBAAAAATcBAAAAATgBAAAAATkBAAAAAToBADEAITsBAAAAATwBAAAAAT0BAAAAAQUVAAAnACAYAAAwACAZAAAwACAzIAAAAAE6IAAvACENFQAAJwAgFgAALgAgFwAAJwAgGAAAJwAgGQAAJwAgMwIAAAABNAIAAAAENQIAAAAENgIAAAABNwIAAAABOAIAAAABOQIAAAABOgIALQAhBxUAACcAIBgAACwAIBkAACwAIDMAAAAsAjQAAAAsCDUAAAAsCDoAACssIgcVAAAnACAYAAAqACAZAAAqACAzAAAALgI0AAAALgg1AAAALgg6AAApLiILFQAAJwAgGAAAKAAgGQAAKAAgM0AAAAABNEAAAAAENUAAAAAENkAAAAABN0AAAAABOEAAAAABOUAAAAABOkAAJgAhCxUAACQAIBgAACUAIBkAACUAIDNAAAAAATRAAAAABTVAAAAABTZAAAAAATdAAAAAAThAAAAAATlAAAAAATpAACMAIQsVAAAkACAYAAAlACAZAAAlACAzQAAAAAE0QAAAAAU1QAAAAAU2QAAAAAE3QAAAAAE4QAAAAAE5QAAAAAE6QAAjACEIMwIAAAABNAIAAAAFNQIAAAAFNgIAAAABNwIAAAABOAIAAAABOQIAAAABOgIAJAAhCDNAAAAAATRAAAAABTVAAAAABTZAAAAAATdAAAAAAThAAAAAATlAAAAAATpAACUAIQsVAAAnACAYAAAoACAZAAAoACAzQAAAAAE0QAAAAAQ1QAAAAAQ2QAAAAAE3QAAAAAE4QAAAAAE5QAAAAAE6QAAmACEIMwIAAAABNAIAAAAENQIAAAAENgIAAAABNwIAAAABOAIAAAABOQIAAAABOgIAJwAhCDNAAAAAATRAAAAABDVAAAAABDZAAAAAATdAAAAAAThAAAAAATlAAAAAATpAACgAIQcVAAAnACAYAAAqACAZAAAqACAzAAAALgI0AAAALgg1AAAALgg6AAApLiIEMwAAAC4CNAAAAC4INQAAAC4IOgAAKi4iBxUAACcAIBgAACwAIBkAACwAIDMAAAAsAjQAAAAsCDUAAAAsCDoAACssIgQzAAAALAI0AAAALAg1AAAALAg6AAAsLCINFQAAJwAgFgAALgAgFwAAJwAgGAAAJwAgGQAAJwAgMwIAAAABNAIAAAAENQIAAAAENgIAAAABNwIAAAABOAIAAAABOQIAAAABOgIALQAhCDMIAAAAATQIAAAABDUIAAAABDYIAAAAATcIAAAAATgIAAAAATkIAAAAAToIAC4AIQUVAAAnACAYAAAwACAZAAAwACAzIAAAAAE6IAAvACECMyAAAAABOiAAMAAhDhUAACQAIBgAADIAIBkAADIAIDMBAAAAATQBAAAABTUBAAAABTYBAAAAATcBAAAAATgBAAAAATkBAAAAAToBADEAITsBAAAAATwBAAAAAT0BAAAAAQszAQAAAAE0AQAAAAU1AQAAAAU2AQAAAAE3AQAAAAE4AQAAAAE5AQAAAAE6AQAyACE7AQAAAAE8AQAAAAE9AQAAAAEOFQAAJwAgGAAANAAgGQAANAAgMwEAAAABNAEAAAAENQEAAAAENgEAAAABNwEAAAABOAEAAAABOQEAAAABOgEAMwAhOwEAAAABPAEAAAABPQEAAAABCzMBAAAAATQBAAAABDUBAAAABDYBAAAAATcBAAAAATgBAAAAATkBAAAAAToBADQAITsBAAAAATwBAAAAAT0BAAAAARUcAAA1ADAdAAAEABAeAAA1ADAfAQA2ACEgAQA2ACEhAQA2ACEiAQA3ACEjAQA2ACEkAQA3ACElAQA3ACEmIAA4ACEnAQA3ACEoAQA2ACEpAQA2ACEqAgA5ACEsAAA6LCIuAAA7LiIvQAA8ACEwQAA8ACExIAA4ACEyQAA9ACELMwEAAAABNAEAAAAENQEAAAAENgEAAAABNwEAAAABOAEAAAABOQEAAAABOgEANAAhOwEAAAABPAEAAAABPQEAAAABCzMBAAAAATQBAAAABTUBAAAABTYBAAAAATcBAAAAATgBAAAAATkBAAAAAToBADIAITsBAAAAATwBAAAAAT0BAAAAAQIzIAAAAAE6IAAwACEIMwIAAAABNAIAAAAENQIAAAAENgIAAAABNwIAAAABOAIAAAABOQIAAAABOgIAJwAhBDMAAAAsAjQAAAAsCDUAAAAsCDoAACwsIgQzAAAALgI0AAAALgg1AAAALgg6AAAqLiIIM0AAAAABNEAAAAAENUAAAAAENkAAAAABN0AAAAABOEAAAAABOUAAAAABOkAAKAAhCDNAAAAAATRAAAAABTVAAAAABTZAAAAAATdAAAAAAThAAAAAATlAAAAAATpAACUAIQAAAAAAAAE-AQAAAAEBPgEAAAABAT4gAAAAAQU-AgAAAAE_AgAAAAFAAgAAAAFBAgAAAAFCAgAAAAEBPgAAACwCAT4AAAAuAgE-QAAAAAEBPkAAAAABAAAAAAUVAAYWAAcXAAgYAAkZAAoAAAAAAAUVAAYWAAcXAAgYAAkZAAoBAgECAwEFBgEGBwEHCAEJCgEKDAILDQMMDwENEQIOEgQREwESFAETFQIaGAUbGQs"
 }
 
 async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Module> {
@@ -70,8 +70,8 @@ export interface PrismaClientConstructor {
    * const prisma = new PrismaClient({
    *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
    * })
-   * // Fetch zero or more Users
-   * const users = await prisma.user.findMany()
+   * // Fetch zero or more Psychologists
+   * const psychologists = await prisma.psychologist.findMany()
    * ```
    * 
    * Read more in our [docs](https://pris.ly/d/client).
@@ -94,8 +94,8 @@ export interface PrismaClientConstructor {
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more Users
- * const users = await prisma.user.findMany()
+ * // Fetch zero or more Psychologists
+ * const psychologists = await prisma.psychologist.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -188,7 +188,15 @@ export interface PrismaClient<
     extArgs: ExtArgs
   }>>
 
-    
+      /**
+   * `prisma.psychologist`: Exposes CRUD operations for the **Psychologist** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Psychologists
+    * const psychologists = await prisma.psychologist.findMany()
+    * ```
+    */
+  get psychologist(): Prisma.PsychologistDelegate<ExtArgs, { omit: OmitOpts }>;
 }
 
 export function getPrismaClientClass(): PrismaClientConstructor {

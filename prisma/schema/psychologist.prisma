@@ -1,0 +1,27 @@
+model Psychologist {
+    id                   String                 @id @default(uuid())
+    name                 String
+    email                String                 @unique
+    profilePhoto         String?
+    password             String
+    address              String?
+    contactNumber        String?                @unique
+    verified             Boolean                @default(false)
+    sector               String?
+    availability         Json?
+    appointmentFee       Float                  @default(0)
+    qualification        String
+    licenseId            String                 @unique
+    experience           Int
+    role                 UserRoles              @default(PSYCHOLOGIST)
+    status               PsychologistStatus     @default(REGULAR)
+    createdAt            DateTime               @default(now())
+    updatedAt            DateTime               @updatedAt
+    deleted              Boolean                @default(false)
+    deletedAt            DateTime?
+    patientprescriptions patientPrescriptions[]
+    prescriptions        Prescription[]
+
+    @@index([email, contactNumber, licenseId])
+    @@map("psychologists")
+}
