@@ -16,3 +16,9 @@ enum PaymentStatus {
     COMPLETED
     FAILED
 }
+
+enum AppointmentStatus {
+    PENDING
+    CONFIRMED
+    CANCELLED
+}

@@ -1,13 +1,44 @@
 model Appointment {
-    id             String         @id @default(uuid())
-    date           DateTime
-    patientIssue   String?
-    meetLink       String?
-    psychologistid String
-    psychologist   Psychologist   @relation(fields: [psychologistid], references: [id], onDelete: Cascade, onUpdate: Cascade)
-    duration       Int
-    patientId      String
-    patient        Patient        @relation(fields: [patientId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-    prescriptions  Prescription[]
-    paymentStatus  PaymentStatus  @default(PENDING)
+    id                String            @id @default(uuid())
+    date              DateTime
+    recordHistory     String?
+    patientIssue      String?
+    meetLink          String?
+    psychologistid    String
+    appointmentStatus AppointmentStatus @default(PENDING)
+    psychologist      Psychologist      @relation(fields: [psychologistid], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    duration          Int
+    patientId         String
+    patient           Patient           @relation(fields: [patientId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    prescriptions     Prescription?
+    paymentStatus     PaymentStatus     @default(PENDING)
+    payment           Payment?
+
+    @@index([psychologistid, patientId, id])
+    @@map("appointments")
 }
+
+/**
+ * model Appointment {
+ * id             String        @id @default(uuid(7))
+ * patientId      String
+ * patient        Patient       @relation(fields: [patientId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+ * scheduleId     String
+ * schedule       Schedule      @relation(fields: [scheduleId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+ * doctorId       String
+ * doctor         Doctor        @relation(fields: [doctorId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+ * videoCallingId String
+ * status         String
+ * paymentStatus  String
+ * createdAt      DateTime      @default(now())
+ * updatedAt      DateTime      @updatedAt
+ * reviews        Review[]
+ * prescriptions  Prescription?
+ * payments       Payment?
+ * @@index([patientId], name: "idx_appointment_patientId")
+ * @@index([doctorId], name: "idx_appointment_doctorId")
+ * @@index([scheduleId], name: "idx_appointment_scheduleId")
+ * @@index([status], name: "idx_appointment_status")
+ * @@map("appointments")
+ * }
+ */
