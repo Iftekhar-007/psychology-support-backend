@@ -21,6 +21,7 @@ model Psychologist {
     deletedAt            DateTime?
     patientprescriptions patientPrescriptions[]
     prescriptions        Prescription[]
+    appointments         Appointment[]
 
     @@index([email, contactNumber, licenseId])
     @@map("psychologists")

@@ -1,0 +1,13 @@
+model Appointment {
+    id             String         @id @default(uuid())
+    date           DateTime
+    patientIssue   String?
+    meetLink       String?
+    psychologistid String
+    psychologist   Psychologist   @relation(fields: [psychologistid], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    duration       Int
+    patientId      String
+    patient        Patient        @relation(fields: [patientId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    prescriptions  Prescription[]
+    paymentStatus  PaymentStatus  @default(PENDING)
+}

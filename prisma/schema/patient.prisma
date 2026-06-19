@@ -14,6 +14,7 @@ model Patient {
     deletedAt            DateTime?
     patientPrescriptions patientPrescriptions[]
     prescriptions        Prescription[]
+    appointments         Appointment[]
 
     @@index([email, contactNumber])
     @@map("patients")
