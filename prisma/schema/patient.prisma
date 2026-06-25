@@ -4,7 +4,6 @@ model Patient {
     email                String                 @unique
     profilePhoto         String?
     address              String?
-    prescription         String?
     contactNumber        String?                @unique
     role                 UserRoles              @default(PATIENT)
     createdAt            DateTime               @default(now())

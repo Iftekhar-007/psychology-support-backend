@@ -1362,7 +1362,6 @@ export const PatientScalarFieldEnum = {
   email: 'email',
   profilePhoto: 'profilePhoto',
   address: 'address',
-  prescription: 'prescription',
   contactNumber: 'contactNumber',
   role: 'role',
   createdAt: 'createdAt',

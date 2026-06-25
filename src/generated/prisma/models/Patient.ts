@@ -30,7 +30,6 @@ export type PatientMinAggregateOutputType = {
   email: string | null
   profilePhoto: string | null
   address: string | null
-  prescription: string | null
   contactNumber: string | null
   role: $Enums.UserRoles | null
   createdAt: Date | null
@@ -45,7 +44,6 @@ export type PatientMaxAggregateOutputType = {
   email: string | null
   profilePhoto: string | null
   address: string | null
-  prescription: string | null
   contactNumber: string | null
   role: $Enums.UserRoles | null
   createdAt: Date | null
@@ -60,7 +58,6 @@ export type PatientCountAggregateOutputType = {
   email: number
   profilePhoto: number
   address: number
-  prescription: number
   contactNumber: number
   role: number
   createdAt: number
@@ -77,7 +74,6 @@ export type PatientMinAggregateInputType = {
   email?: true
   profilePhoto?: true
   address?: true
-  prescription?: true
   contactNumber?: true
   role?: true
   createdAt?: true
@@ -92,7 +88,6 @@ export type PatientMaxAggregateInputType = {
   email?: true
   profilePhoto?: true
   address?: true
-  prescription?: true
   contactNumber?: true
   role?: true
   createdAt?: true
@@ -107,7 +102,6 @@ export type PatientCountAggregateInputType = {
   email?: true
   profilePhoto?: true
   address?: true
-  prescription?: true
   contactNumber?: true
   role?: true
   createdAt?: true
@@ -195,7 +189,6 @@ export type PatientGroupByOutputType = {
   email: string
   profilePhoto: string | null
   address: string | null
-  prescription: string | null
   contactNumber: string | null
   role: $Enums.UserRoles
   createdAt: Date
@@ -231,7 +224,6 @@ export type PatientWhereInput = {
   email?: Prisma.StringFilter<"Patient"> | string
   profilePhoto?: Prisma.StringNullableFilter<"Patient"> | string | null
   address?: Prisma.StringNullableFilter<"Patient"> | string | null
-  prescription?: Prisma.StringNullableFilter<"Patient"> | string | null
   contactNumber?: Prisma.StringNullableFilter<"Patient"> | string | null
   role?: Prisma.EnumUserRolesFilter<"Patient"> | $Enums.UserRoles
   createdAt?: Prisma.DateTimeFilter<"Patient"> | Date | string
@@ -249,7 +241,6 @@ export type PatientOrderByWithRelationInput = {
   email?: Prisma.SortOrder
   profilePhoto?: Prisma.SortOrderInput | Prisma.SortOrder
   address?: Prisma.SortOrderInput | Prisma.SortOrder
-  prescription?: Prisma.SortOrderInput | Prisma.SortOrder
   contactNumber?: Prisma.SortOrderInput | Prisma.SortOrder
   role?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -271,7 +262,6 @@ export type PatientWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"Patient"> | string
   profilePhoto?: Prisma.StringNullableFilter<"Patient"> | string | null
   address?: Prisma.StringNullableFilter<"Patient"> | string | null
-  prescription?: Prisma.StringNullableFilter<"Patient"> | string | null
   role?: Prisma.EnumUserRolesFilter<"Patient"> | $Enums.UserRoles
   createdAt?: Prisma.DateTimeFilter<"Patient"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Patient"> | Date | string
@@ -288,7 +278,6 @@ export type PatientOrderByWithAggregationInput = {
   email?: Prisma.SortOrder
   profilePhoto?: Prisma.SortOrderInput | Prisma.SortOrder
   address?: Prisma.SortOrderInput | Prisma.SortOrder
-  prescription?: Prisma.SortOrderInput | Prisma.SortOrder
   contactNumber?: Prisma.SortOrderInput | Prisma.SortOrder
   role?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -309,7 +298,6 @@ export type PatientScalarWhereWithAggregatesInput = {
   email?: Prisma.StringWithAggregatesFilter<"Patient"> | string
   profilePhoto?: Prisma.StringNullableWithAggregatesFilter<"Patient"> | string | null
   address?: Prisma.StringNullableWithAggregatesFilter<"Patient"> | string | null
-  prescription?: Prisma.StringNullableWithAggregatesFilter<"Patient"> | string | null
   contactNumber?: Prisma.StringNullableWithAggregatesFilter<"Patient"> | string | null
   role?: Prisma.EnumUserRolesWithAggregatesFilter<"Patient"> | $Enums.UserRoles
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Patient"> | Date | string
@@ -324,7 +312,6 @@ export type PatientCreateInput = {
   email: string
   profilePhoto?: string | null
   address?: string | null
-  prescription?: string | null
   contactNumber?: string | null
   role?: $Enums.UserRoles
   createdAt?: Date | string
@@ -342,7 +329,6 @@ export type PatientUncheckedCreateInput = {
   email: string
   profilePhoto?: string | null
   address?: string | null
-  prescription?: string | null
   contactNumber?: string | null
   role?: $Enums.UserRoles
   createdAt?: Date | string
@@ -360,7 +346,6 @@ export type PatientUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  prescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -378,7 +363,6 @@ export type PatientUncheckedUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  prescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -396,7 +380,6 @@ export type PatientCreateManyInput = {
   email: string
   profilePhoto?: string | null
   address?: string | null
-  prescription?: string | null
   contactNumber?: string | null
   role?: $Enums.UserRoles
   createdAt?: Date | string
@@ -411,7 +394,6 @@ export type PatientUpdateManyMutationInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  prescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -426,7 +408,6 @@ export type PatientUncheckedUpdateManyInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  prescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -446,7 +427,6 @@ export type PatientCountOrderByAggregateInput = {
   email?: Prisma.SortOrder
   profilePhoto?: Prisma.SortOrder
   address?: Prisma.SortOrder
-  prescription?: Prisma.SortOrder
   contactNumber?: Prisma.SortOrder
   role?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -461,7 +441,6 @@ export type PatientMaxOrderByAggregateInput = {
   email?: Prisma.SortOrder
   profilePhoto?: Prisma.SortOrder
   address?: Prisma.SortOrder
-  prescription?: Prisma.SortOrder
   contactNumber?: Prisma.SortOrder
   role?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -476,7 +455,6 @@ export type PatientMinOrderByAggregateInput = {
   email?: Prisma.SortOrder
   profilePhoto?: Prisma.SortOrder
   address?: Prisma.SortOrder
-  prescription?: Prisma.SortOrder
   contactNumber?: Prisma.SortOrder
   role?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -533,7 +511,6 @@ export type PatientCreateWithoutAppointmentsInput = {
   email: string
   profilePhoto?: string | null
   address?: string | null
-  prescription?: string | null
   contactNumber?: string | null
   role?: $Enums.UserRoles
   createdAt?: Date | string
@@ -550,7 +527,6 @@ export type PatientUncheckedCreateWithoutAppointmentsInput = {
   email: string
   profilePhoto?: string | null
   address?: string | null
-  prescription?: string | null
   contactNumber?: string | null
   role?: $Enums.UserRoles
   createdAt?: Date | string
@@ -583,7 +559,6 @@ export type PatientUpdateWithoutAppointmentsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  prescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -600,7 +575,6 @@ export type PatientUncheckedUpdateWithoutAppointmentsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  prescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -617,7 +591,6 @@ export type PatientCreateWithoutPatientPrescriptionsInput = {
   email: string
   profilePhoto?: string | null
   address?: string | null
-  prescription?: string | null
   contactNumber?: string | null
   role?: $Enums.UserRoles
   createdAt?: Date | string
@@ -634,7 +607,6 @@ export type PatientUncheckedCreateWithoutPatientPrescriptionsInput = {
   email: string
   profilePhoto?: string | null
   address?: string | null
-  prescription?: string | null
   contactNumber?: string | null
   role?: $Enums.UserRoles
   createdAt?: Date | string
@@ -667,7 +639,6 @@ export type PatientUpdateWithoutPatientPrescriptionsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  prescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -684,7 +655,6 @@ export type PatientUncheckedUpdateWithoutPatientPrescriptionsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  prescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -701,7 +671,6 @@ export type PatientCreateWithoutPrescriptionsInput = {
   email: string
   profilePhoto?: string | null
   address?: string | null
-  prescription?: string | null
   contactNumber?: string | null
   role?: $Enums.UserRoles
   createdAt?: Date | string
@@ -718,7 +687,6 @@ export type PatientUncheckedCreateWithoutPrescriptionsInput = {
   email: string
   profilePhoto?: string | null
   address?: string | null
-  prescription?: string | null
   contactNumber?: string | null
   role?: $Enums.UserRoles
   createdAt?: Date | string
@@ -751,7 +719,6 @@ export type PatientUpdateWithoutPrescriptionsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  prescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -768,7 +735,6 @@ export type PatientUncheckedUpdateWithoutPrescriptionsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  prescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -834,7 +800,6 @@ export type PatientSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   email?: boolean
   profilePhoto?: boolean
   address?: boolean
-  prescription?: boolean
   contactNumber?: boolean
   role?: boolean
   createdAt?: boolean
@@ -853,7 +818,6 @@ export type PatientSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   email?: boolean
   profilePhoto?: boolean
   address?: boolean
-  prescription?: boolean
   contactNumber?: boolean
   role?: boolean
   createdAt?: boolean
@@ -868,7 +832,6 @@ export type PatientSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   email?: boolean
   profilePhoto?: boolean
   address?: boolean
-  prescription?: boolean
   contactNumber?: boolean
   role?: boolean
   createdAt?: boolean
@@ -883,7 +846,6 @@ export type PatientSelectScalar = {
   email?: boolean
   profilePhoto?: boolean
   address?: boolean
-  prescription?: boolean
   contactNumber?: boolean
   role?: boolean
   createdAt?: boolean
@@ -892,7 +854,7 @@ export type PatientSelectScalar = {
   deletedAt?: boolean
 }
 
-export type PatientOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "profilePhoto" | "address" | "prescription" | "contactNumber" | "role" | "createdAt" | "updatedAt" | "deleted" | "deletedAt", ExtArgs["result"]["patient"]>
+export type PatientOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "profilePhoto" | "address" | "contactNumber" | "role" | "createdAt" | "updatedAt" | "deleted" | "deletedAt", ExtArgs["result"]["patient"]>
 export type PatientInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   patientPrescriptions?: boolean | Prisma.Patient$patientPrescriptionsArgs<ExtArgs>
   prescriptions?: boolean | Prisma.Patient$prescriptionsArgs<ExtArgs>
@@ -915,7 +877,6 @@ export type $PatientPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     email: string
     profilePhoto: string | null
     address: string | null
-    prescription: string | null
     contactNumber: string | null
     role: $Enums.UserRoles
     createdAt: Date
@@ -1353,7 +1314,6 @@ export interface PatientFieldRefs {
   readonly email: Prisma.FieldRef<"Patient", 'String'>
   readonly profilePhoto: Prisma.FieldRef<"Patient", 'String'>
   readonly address: Prisma.FieldRef<"Patient", 'String'>
-  readonly prescription: Prisma.FieldRef<"Patient", 'String'>
   readonly contactNumber: Prisma.FieldRef<"Patient", 'String'>
   readonly role: Prisma.FieldRef<"Patient", 'UserRoles'>
   readonly createdAt: Prisma.FieldRef<"Patient", 'DateTime'>

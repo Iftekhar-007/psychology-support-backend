@@ -13,7 +13,6 @@ app.all("/api/auth/*splat", toNodeHandler(auth));
 
 app.use("/api/v1", indexRoutes);
 
-// Sample Route with Explicit TypeScript Types
 app.get("/", (req: Request, res: Response) => {
   res.json({
     message: "Hello, your updated TypeScript Express server is running!",
