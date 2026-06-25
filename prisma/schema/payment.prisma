@@ -1,14 +1,34 @@
 model Payment {
-    id              String        @id @default(uuid())
-    gateway         String?       @default("Stripe")
-    stripePaymentId String?       @unique
-    transactionId   String?       @unique
-    amount          Float
-    paymentDate     DateTime      @default(now())
-    appointmentId   String        @unique
-    appointment     Appointment   @relation(fields: [appointmentId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-    status          PaymentStatus @default(PENDING)
+    id                 String        @id @default(uuid())
+    gateway            String?       @default("Stripe")
+    paymentgatewayData Json?
+    stripeEventId      String?       @unique
+    transactionId      String?       @unique
+    amount             Float
+    paymentDate        DateTime      @default(now())
+    appointmentId      String        @unique
+    appointment        Appointment   @relation(fields: [appointmentId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    status             PaymentStatus @default(PENDING)
 
-    @@index([appointmentId])
+    @@index([appointmentId, id, transactionId, stripeEventId])
     @@map("payments")
 }
+
+/**
+ * model Payment {
+ * id                 String        @id @default(uuid(7))
+ * appointmentId      String        @unique
+ * appointment        Appointment   @relation(fields: [appointmentId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+ * amount             Float
+ * transactionId      String
+ * stripeEventId      String?       @unique
+ * invoiceUrl         String?
+ * status             PaymentStatus @default(UNPAID)
+ * paymentGatewayData Json?
+ * createdAt          DateTime      @default(now())
+ * updatedAt          DateTime      @updatedAt
+ * @@index([appointmentId], name: "idx_payment_appointmentId")
+ * @@index([transactionId], name: "idx_payment_transacionId")
+ * @@map("payments")
+ * }
+ */

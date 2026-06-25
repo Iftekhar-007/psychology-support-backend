@@ -3,7 +3,6 @@ model Psychologist {
     name                 String
     email                String                 @unique
     profilePhoto         String?
-    password             String
     address              String?
     contactNumber        String?                @unique
     verified             Boolean                @default(false)

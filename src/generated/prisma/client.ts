@@ -47,6 +47,11 @@ export { Prisma }
  */
 export type Admin = Prisma.AdminModel
 /**
+ * Model Appointment
+ * 
+ */
+export type Appointment = Prisma.AppointmentModel
+/**
  * Model User
  * 
  */
@@ -76,6 +81,11 @@ export type Patient = Prisma.PatientModel
  * 
  */
 export type patientPrescriptions = Prisma.patientPrescriptionsModel
+/**
+ * Model Payment
+ * 
+ */
+export type Payment = Prisma.PaymentModel
 /**
  * Model Prescription
  * 

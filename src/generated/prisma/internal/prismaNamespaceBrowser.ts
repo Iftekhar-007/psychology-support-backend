@@ -52,12 +52,14 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   Admin: 'Admin',
+  Appointment: 'Appointment',
   User: 'User',
   Session: 'Session',
   Account: 'Account',
   Verification: 'Verification',
   Patient: 'Patient',
   patientPrescriptions: 'patientPrescriptions',
+  Payment: 'Payment',
   Prescription: 'Prescription',
   Psychologist: 'Psychologist'
 } as const
@@ -82,13 +84,28 @@ export const AdminScalarFieldEnum = {
   id: 'id',
   name: 'name',
   email: 'email',
-  password: 'password',
   role: 'role',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type AdminScalarFieldEnum = (typeof AdminScalarFieldEnum)[keyof typeof AdminScalarFieldEnum]
+
+
+export const AppointmentScalarFieldEnum = {
+  id: 'id',
+  date: 'date',
+  recordHistory: 'recordHistory',
+  patientIssue: 'patientIssue',
+  meetLink: 'meetLink',
+  psychologistid: 'psychologistid',
+  appointmentStatus: 'appointmentStatus',
+  duration: 'duration',
+  patientId: 'patientId',
+  paymentStatus: 'paymentStatus'
+} as const
+
+export type AppointmentScalarFieldEnum = (typeof AppointmentScalarFieldEnum)[keyof typeof AppointmentScalarFieldEnum]
 
 
 export const UserScalarFieldEnum = {
@@ -157,7 +174,6 @@ export const PatientScalarFieldEnum = {
   name: 'name',
   email: 'email',
   profilePhoto: 'profilePhoto',
-  password: 'password',
   address: 'address',
   prescription: 'prescription',
   contactNumber: 'contactNumber',
@@ -180,6 +196,21 @@ export const PatientPrescriptionsScalarFieldEnum = {
 export type PatientPrescriptionsScalarFieldEnum = (typeof PatientPrescriptionsScalarFieldEnum)[keyof typeof PatientPrescriptionsScalarFieldEnum]
 
 
+export const PaymentScalarFieldEnum = {
+  id: 'id',
+  gateway: 'gateway',
+  paymentgatewayData: 'paymentgatewayData',
+  stripeEventId: 'stripeEventId',
+  transactionId: 'transactionId',
+  amount: 'amount',
+  paymentDate: 'paymentDate',
+  appointmentId: 'appointmentId',
+  status: 'status'
+} as const
+
+export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
+
+
 export const PrescriptionScalarFieldEnum = {
   id: 'id',
   patientId: 'patientId',
@@ -189,7 +220,8 @@ export const PrescriptionScalarFieldEnum = {
   duration: 'duration',
   notes: 'notes',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  appointmentId: 'appointmentId'
 } as const
 
 export type PrescriptionScalarFieldEnum = (typeof PrescriptionScalarFieldEnum)[keyof typeof PrescriptionScalarFieldEnum]
@@ -200,7 +232,6 @@ export const PsychologistScalarFieldEnum = {
   name: 'name',
   email: 'email',
   profilePhoto: 'profilePhoto',
-  password: 'password',
   address: 'address',
   contactNumber: 'contactNumber',
   verified: 'verified',

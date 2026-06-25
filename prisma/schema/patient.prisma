@@ -3,7 +3,6 @@ model Patient {
     name                 String
     email                String                 @unique
     profilePhoto         String?
-    password             String
     address              String?
     prescription         String?
     contactNumber        String?                @unique
