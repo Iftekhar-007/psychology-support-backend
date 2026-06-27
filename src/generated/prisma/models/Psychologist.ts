@@ -38,6 +38,7 @@ export type PsychologistSumAggregateOutputType = {
 
 export type PsychologistMinAggregateOutputType = {
   id: string | null
+  userId: string | null
   name: string | null
   email: string | null
   profilePhoto: string | null
@@ -59,6 +60,7 @@ export type PsychologistMinAggregateOutputType = {
 
 export type PsychologistMaxAggregateOutputType = {
   id: string | null
+  userId: string | null
   name: string | null
   email: string | null
   profilePhoto: string | null
@@ -80,6 +82,7 @@ export type PsychologistMaxAggregateOutputType = {
 
 export type PsychologistCountAggregateOutputType = {
   id: number
+  userId: number
   name: number
   email: number
   profilePhoto: number
@@ -114,6 +117,7 @@ export type PsychologistSumAggregateInputType = {
 
 export type PsychologistMinAggregateInputType = {
   id?: true
+  userId?: true
   name?: true
   email?: true
   profilePhoto?: true
@@ -135,6 +139,7 @@ export type PsychologistMinAggregateInputType = {
 
 export type PsychologistMaxAggregateInputType = {
   id?: true
+  userId?: true
   name?: true
   email?: true
   profilePhoto?: true
@@ -156,6 +161,7 @@ export type PsychologistMaxAggregateInputType = {
 
 export type PsychologistCountAggregateInputType = {
   id?: true
+  userId?: true
   name?: true
   email?: true
   profilePhoto?: true
@@ -265,6 +271,7 @@ export type PsychologistGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
 
 export type PsychologistGroupByOutputType = {
   id: string
+  userId: string
   name: string
   email: string
   profilePhoto: string | null
@@ -310,6 +317,7 @@ export type PsychologistWhereInput = {
   OR?: Prisma.PsychologistWhereInput[]
   NOT?: Prisma.PsychologistWhereInput | Prisma.PsychologistWhereInput[]
   id?: Prisma.StringFilter<"Psychologist"> | string
+  userId?: Prisma.StringFilter<"Psychologist"> | string
   name?: Prisma.StringFilter<"Psychologist"> | string
   email?: Prisma.StringFilter<"Psychologist"> | string
   profilePhoto?: Prisma.StringNullableFilter<"Psychologist"> | string | null
@@ -328,6 +336,7 @@ export type PsychologistWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Psychologist"> | Date | string
   deleted?: Prisma.BoolFilter<"Psychologist"> | boolean
   deletedAt?: Prisma.DateTimeNullableFilter<"Psychologist"> | Date | string | null
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   patientprescriptions?: Prisma.PatientPrescriptionsListRelationFilter
   prescriptions?: Prisma.PrescriptionListRelationFilter
   appointments?: Prisma.AppointmentListRelationFilter
@@ -335,6 +344,7 @@ export type PsychologistWhereInput = {
 
 export type PsychologistOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   profilePhoto?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -353,6 +363,7 @@ export type PsychologistOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  user?: Prisma.UserOrderByWithRelationInput
   patientprescriptions?: Prisma.patientPrescriptionsOrderByRelationAggregateInput
   prescriptions?: Prisma.PrescriptionOrderByRelationAggregateInput
   appointments?: Prisma.AppointmentOrderByRelationAggregateInput
@@ -360,6 +371,7 @@ export type PsychologistOrderByWithRelationInput = {
 
 export type PsychologistWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  userId?: string
   email?: string
   contactNumber?: string
   licenseId?: string
@@ -381,13 +393,15 @@ export type PsychologistWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Psychologist"> | Date | string
   deleted?: Prisma.BoolFilter<"Psychologist"> | boolean
   deletedAt?: Prisma.DateTimeNullableFilter<"Psychologist"> | Date | string | null
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   patientprescriptions?: Prisma.PatientPrescriptionsListRelationFilter
   prescriptions?: Prisma.PrescriptionListRelationFilter
   appointments?: Prisma.AppointmentListRelationFilter
-}, "id" | "email" | "contactNumber" | "licenseId">
+}, "id" | "userId" | "email" | "contactNumber" | "licenseId">
 
 export type PsychologistOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   profilePhoto?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -418,6 +432,7 @@ export type PsychologistScalarWhereWithAggregatesInput = {
   OR?: Prisma.PsychologistScalarWhereWithAggregatesInput[]
   NOT?: Prisma.PsychologistScalarWhereWithAggregatesInput | Prisma.PsychologistScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Psychologist"> | string
+  userId?: Prisma.StringWithAggregatesFilter<"Psychologist"> | string
   name?: Prisma.StringWithAggregatesFilter<"Psychologist"> | string
   email?: Prisma.StringWithAggregatesFilter<"Psychologist"> | string
   profilePhoto?: Prisma.StringNullableWithAggregatesFilter<"Psychologist"> | string | null
@@ -458,6 +473,7 @@ export type PsychologistCreateInput = {
   updatedAt?: Date | string
   deleted?: boolean
   deletedAt?: Date | string | null
+  user: Prisma.UserCreateNestedOneWithoutPsychologistInput
   patientprescriptions?: Prisma.patientPrescriptionsCreateNestedManyWithoutPsychologistInput
   prescriptions?: Prisma.PrescriptionCreateNestedManyWithoutPsychologistInput
   appointments?: Prisma.AppointmentCreateNestedManyWithoutPsychologistInput
@@ -465,6 +481,7 @@ export type PsychologistCreateInput = {
 
 export type PsychologistUncheckedCreateInput = {
   id?: string
+  userId: string
   name: string
   email: string
   profilePhoto?: string | null
@@ -508,6 +525,7 @@ export type PsychologistUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  user?: Prisma.UserUpdateOneRequiredWithoutPsychologistNestedInput
   patientprescriptions?: Prisma.patientPrescriptionsUpdateManyWithoutPsychologistNestedInput
   prescriptions?: Prisma.PrescriptionUpdateManyWithoutPsychologistNestedInput
   appointments?: Prisma.AppointmentUpdateManyWithoutPsychologistNestedInput
@@ -515,6 +533,7 @@ export type PsychologistUpdateInput = {
 
 export type PsychologistUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -540,6 +559,7 @@ export type PsychologistUncheckedUpdateInput = {
 
 export type PsychologistCreateManyInput = {
   id?: string
+  userId: string
   name: string
   email: string
   profilePhoto?: string | null
@@ -584,6 +604,7 @@ export type PsychologistUpdateManyMutationInput = {
 
 export type PsychologistUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -609,8 +630,14 @@ export type PsychologistScalarRelationFilter = {
   isNot?: Prisma.PsychologistWhereInput
 }
 
+export type PsychologistNullableScalarRelationFilter = {
+  is?: Prisma.PsychologistWhereInput | null
+  isNot?: Prisma.PsychologistWhereInput | null
+}
+
 export type PsychologistCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   profilePhoto?: Prisma.SortOrder
@@ -638,6 +665,7 @@ export type PsychologistAvgOrderByAggregateInput = {
 
 export type PsychologistMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   profilePhoto?: Prisma.SortOrder
@@ -659,6 +687,7 @@ export type PsychologistMaxOrderByAggregateInput = {
 
 export type PsychologistMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   profilePhoto?: Prisma.SortOrder
@@ -695,6 +724,38 @@ export type PsychologistUpdateOneRequiredWithoutAppointmentsNestedInput = {
   upsert?: Prisma.PsychologistUpsertWithoutAppointmentsInput
   connect?: Prisma.PsychologistWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.PsychologistUpdateToOneWithWhereWithoutAppointmentsInput, Prisma.PsychologistUpdateWithoutAppointmentsInput>, Prisma.PsychologistUncheckedUpdateWithoutAppointmentsInput>
+}
+
+export type PsychologistCreateNestedOneWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.PsychologistCreateWithoutUserInput, Prisma.PsychologistUncheckedCreateWithoutUserInput>
+  connectOrCreate?: Prisma.PsychologistCreateOrConnectWithoutUserInput
+  connect?: Prisma.PsychologistWhereUniqueInput
+}
+
+export type PsychologistUncheckedCreateNestedOneWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.PsychologistCreateWithoutUserInput, Prisma.PsychologistUncheckedCreateWithoutUserInput>
+  connectOrCreate?: Prisma.PsychologistCreateOrConnectWithoutUserInput
+  connect?: Prisma.PsychologistWhereUniqueInput
+}
+
+export type PsychologistUpdateOneWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.PsychologistCreateWithoutUserInput, Prisma.PsychologistUncheckedCreateWithoutUserInput>
+  connectOrCreate?: Prisma.PsychologistCreateOrConnectWithoutUserInput
+  upsert?: Prisma.PsychologistUpsertWithoutUserInput
+  disconnect?: Prisma.PsychologistWhereInput | boolean
+  delete?: Prisma.PsychologistWhereInput | boolean
+  connect?: Prisma.PsychologistWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PsychologistUpdateToOneWithWhereWithoutUserInput, Prisma.PsychologistUpdateWithoutUserInput>, Prisma.PsychologistUncheckedUpdateWithoutUserInput>
+}
+
+export type PsychologistUncheckedUpdateOneWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.PsychologistCreateWithoutUserInput, Prisma.PsychologistUncheckedCreateWithoutUserInput>
+  connectOrCreate?: Prisma.PsychologistCreateOrConnectWithoutUserInput
+  upsert?: Prisma.PsychologistUpsertWithoutUserInput
+  disconnect?: Prisma.PsychologistWhereInput | boolean
+  delete?: Prisma.PsychologistWhereInput | boolean
+  connect?: Prisma.PsychologistWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PsychologistUpdateToOneWithWhereWithoutUserInput, Prisma.PsychologistUpdateWithoutUserInput>, Prisma.PsychologistUncheckedUpdateWithoutUserInput>
 }
 
 export type PsychologistCreateNestedOneWithoutPatientprescriptionsInput = {
@@ -749,12 +810,14 @@ export type PsychologistCreateWithoutAppointmentsInput = {
   updatedAt?: Date | string
   deleted?: boolean
   deletedAt?: Date | string | null
+  user: Prisma.UserCreateNestedOneWithoutPsychologistInput
   patientprescriptions?: Prisma.patientPrescriptionsCreateNestedManyWithoutPsychologistInput
   prescriptions?: Prisma.PrescriptionCreateNestedManyWithoutPsychologistInput
 }
 
 export type PsychologistUncheckedCreateWithoutAppointmentsInput = {
   id?: string
+  userId: string
   name: string
   email: string
   profilePhoto?: string | null
@@ -813,12 +876,14 @@ export type PsychologistUpdateWithoutAppointmentsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  user?: Prisma.UserUpdateOneRequiredWithoutPsychologistNestedInput
   patientprescriptions?: Prisma.patientPrescriptionsUpdateManyWithoutPsychologistNestedInput
   prescriptions?: Prisma.PrescriptionUpdateManyWithoutPsychologistNestedInput
 }
 
 export type PsychologistUncheckedUpdateWithoutAppointmentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -841,6 +906,122 @@ export type PsychologistUncheckedUpdateWithoutAppointmentsInput = {
   prescriptions?: Prisma.PrescriptionUncheckedUpdateManyWithoutPsychologistNestedInput
 }
 
+export type PsychologistCreateWithoutUserInput = {
+  id?: string
+  name: string
+  email: string
+  profilePhoto?: string | null
+  address?: string | null
+  contactNumber?: string | null
+  verified?: boolean
+  sector?: string | null
+  availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  appointmentFee?: number
+  qualification: string
+  licenseId: string
+  experience: number
+  role?: $Enums.UserRoles
+  status?: $Enums.PsychologistStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deleted?: boolean
+  deletedAt?: Date | string | null
+  patientprescriptions?: Prisma.patientPrescriptionsCreateNestedManyWithoutPsychologistInput
+  prescriptions?: Prisma.PrescriptionCreateNestedManyWithoutPsychologistInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutPsychologistInput
+}
+
+export type PsychologistUncheckedCreateWithoutUserInput = {
+  id?: string
+  name: string
+  email: string
+  profilePhoto?: string | null
+  address?: string | null
+  contactNumber?: string | null
+  verified?: boolean
+  sector?: string | null
+  availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  appointmentFee?: number
+  qualification: string
+  licenseId: string
+  experience: number
+  role?: $Enums.UserRoles
+  status?: $Enums.PsychologistStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deleted?: boolean
+  deletedAt?: Date | string | null
+  patientprescriptions?: Prisma.patientPrescriptionsUncheckedCreateNestedManyWithoutPsychologistInput
+  prescriptions?: Prisma.PrescriptionUncheckedCreateNestedManyWithoutPsychologistInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutPsychologistInput
+}
+
+export type PsychologistCreateOrConnectWithoutUserInput = {
+  where: Prisma.PsychologistWhereUniqueInput
+  create: Prisma.XOR<Prisma.PsychologistCreateWithoutUserInput, Prisma.PsychologistUncheckedCreateWithoutUserInput>
+}
+
+export type PsychologistUpsertWithoutUserInput = {
+  update: Prisma.XOR<Prisma.PsychologistUpdateWithoutUserInput, Prisma.PsychologistUncheckedUpdateWithoutUserInput>
+  create: Prisma.XOR<Prisma.PsychologistCreateWithoutUserInput, Prisma.PsychologistUncheckedCreateWithoutUserInput>
+  where?: Prisma.PsychologistWhereInput
+}
+
+export type PsychologistUpdateToOneWithWhereWithoutUserInput = {
+  where?: Prisma.PsychologistWhereInput
+  data: Prisma.XOR<Prisma.PsychologistUpdateWithoutUserInput, Prisma.PsychologistUncheckedUpdateWithoutUserInput>
+}
+
+export type PsychologistUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  appointmentFee?: Prisma.FloatFieldUpdateOperationsInput | number
+  qualification?: Prisma.StringFieldUpdateOperationsInput | string
+  licenseId?: Prisma.StringFieldUpdateOperationsInput | string
+  experience?: Prisma.IntFieldUpdateOperationsInput | number
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
+  status?: Prisma.EnumPsychologistStatusFieldUpdateOperationsInput | $Enums.PsychologistStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  patientprescriptions?: Prisma.patientPrescriptionsUpdateManyWithoutPsychologistNestedInput
+  prescriptions?: Prisma.PrescriptionUpdateManyWithoutPsychologistNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutPsychologistNestedInput
+}
+
+export type PsychologistUncheckedUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  appointmentFee?: Prisma.FloatFieldUpdateOperationsInput | number
+  qualification?: Prisma.StringFieldUpdateOperationsInput | string
+  licenseId?: Prisma.StringFieldUpdateOperationsInput | string
+  experience?: Prisma.IntFieldUpdateOperationsInput | number
+  role?: Prisma.EnumUserRolesFieldUpdateOperationsInput | $Enums.UserRoles
+  status?: Prisma.EnumPsychologistStatusFieldUpdateOperationsInput | $Enums.PsychologistStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  patientprescriptions?: Prisma.patientPrescriptionsUncheckedUpdateManyWithoutPsychologistNestedInput
+  prescriptions?: Prisma.PrescriptionUncheckedUpdateManyWithoutPsychologistNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutPsychologistNestedInput
+}
+
 export type PsychologistCreateWithoutPatientprescriptionsInput = {
   id?: string
   name: string
@@ -861,12 +1042,14 @@ export type PsychologistCreateWithoutPatientprescriptionsInput = {
   updatedAt?: Date | string
   deleted?: boolean
   deletedAt?: Date | string | null
+  user: Prisma.UserCreateNestedOneWithoutPsychologistInput
   prescriptions?: Prisma.PrescriptionCreateNestedManyWithoutPsychologistInput
   appointments?: Prisma.AppointmentCreateNestedManyWithoutPsychologistInput
 }
 
 export type PsychologistUncheckedCreateWithoutPatientprescriptionsInput = {
   id?: string
+  userId: string
   name: string
   email: string
   profilePhoto?: string | null
@@ -925,12 +1108,14 @@ export type PsychologistUpdateWithoutPatientprescriptionsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  user?: Prisma.UserUpdateOneRequiredWithoutPsychologistNestedInput
   prescriptions?: Prisma.PrescriptionUpdateManyWithoutPsychologistNestedInput
   appointments?: Prisma.AppointmentUpdateManyWithoutPsychologistNestedInput
 }
 
 export type PsychologistUncheckedUpdateWithoutPatientprescriptionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -973,12 +1158,14 @@ export type PsychologistCreateWithoutPrescriptionsInput = {
   updatedAt?: Date | string
   deleted?: boolean
   deletedAt?: Date | string | null
+  user: Prisma.UserCreateNestedOneWithoutPsychologistInput
   patientprescriptions?: Prisma.patientPrescriptionsCreateNestedManyWithoutPsychologistInput
   appointments?: Prisma.AppointmentCreateNestedManyWithoutPsychologistInput
 }
 
 export type PsychologistUncheckedCreateWithoutPrescriptionsInput = {
   id?: string
+  userId: string
   name: string
   email: string
   profilePhoto?: string | null
@@ -1037,12 +1224,14 @@ export type PsychologistUpdateWithoutPrescriptionsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  user?: Prisma.UserUpdateOneRequiredWithoutPsychologistNestedInput
   patientprescriptions?: Prisma.patientPrescriptionsUpdateManyWithoutPsychologistNestedInput
   appointments?: Prisma.AppointmentUpdateManyWithoutPsychologistNestedInput
 }
 
 export type PsychologistUncheckedUpdateWithoutPrescriptionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1116,6 +1305,7 @@ export type PsychologistCountOutputTypeCountAppointmentsArgs<ExtArgs extends run
 
 export type PsychologistSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  userId?: boolean
   name?: boolean
   email?: boolean
   profilePhoto?: boolean
@@ -1134,6 +1324,7 @@ export type PsychologistSelect<ExtArgs extends runtime.Types.Extensions.Internal
   updatedAt?: boolean
   deleted?: boolean
   deletedAt?: boolean
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   patientprescriptions?: boolean | Prisma.Psychologist$patientprescriptionsArgs<ExtArgs>
   prescriptions?: boolean | Prisma.Psychologist$prescriptionsArgs<ExtArgs>
   appointments?: boolean | Prisma.Psychologist$appointmentsArgs<ExtArgs>
@@ -1142,6 +1333,7 @@ export type PsychologistSelect<ExtArgs extends runtime.Types.Extensions.Internal
 
 export type PsychologistSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  userId?: boolean
   name?: boolean
   email?: boolean
   profilePhoto?: boolean
@@ -1160,10 +1352,12 @@ export type PsychologistSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   updatedAt?: boolean
   deleted?: boolean
   deletedAt?: boolean
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["psychologist"]>
 
 export type PsychologistSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  userId?: boolean
   name?: boolean
   email?: boolean
   profilePhoto?: boolean
@@ -1182,10 +1376,12 @@ export type PsychologistSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   updatedAt?: boolean
   deleted?: boolean
   deletedAt?: boolean
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["psychologist"]>
 
 export type PsychologistSelectScalar = {
   id?: boolean
+  userId?: boolean
   name?: boolean
   email?: boolean
   profilePhoto?: boolean
@@ -1206,25 +1402,32 @@ export type PsychologistSelectScalar = {
   deletedAt?: boolean
 }
 
-export type PsychologistOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "profilePhoto" | "address" | "contactNumber" | "verified" | "sector" | "availability" | "appointmentFee" | "qualification" | "licenseId" | "experience" | "role" | "status" | "createdAt" | "updatedAt" | "deleted" | "deletedAt", ExtArgs["result"]["psychologist"]>
+export type PsychologistOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "name" | "email" | "profilePhoto" | "address" | "contactNumber" | "verified" | "sector" | "availability" | "appointmentFee" | "qualification" | "licenseId" | "experience" | "role" | "status" | "createdAt" | "updatedAt" | "deleted" | "deletedAt", ExtArgs["result"]["psychologist"]>
 export type PsychologistInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   patientprescriptions?: boolean | Prisma.Psychologist$patientprescriptionsArgs<ExtArgs>
   prescriptions?: boolean | Prisma.Psychologist$prescriptionsArgs<ExtArgs>
   appointments?: boolean | Prisma.Psychologist$appointmentsArgs<ExtArgs>
   _count?: boolean | Prisma.PsychologistCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type PsychologistIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type PsychologistIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type PsychologistIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+}
+export type PsychologistIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+}
 
 export type $PsychologistPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Psychologist"
   objects: {
+    user: Prisma.$UserPayload<ExtArgs>
     patientprescriptions: Prisma.$patientPrescriptionsPayload<ExtArgs>[]
     prescriptions: Prisma.$PrescriptionPayload<ExtArgs>[]
     appointments: Prisma.$AppointmentPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
+    userId: string
     name: string
     email: string
     profilePhoto: string | null
@@ -1637,6 +1840,7 @@ readonly fields: PsychologistFieldRefs;
  */
 export interface Prisma__PsychologistClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   patientprescriptions<T extends Prisma.Psychologist$patientprescriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Psychologist$patientprescriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$patientPrescriptionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   prescriptions<T extends Prisma.Psychologist$prescriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Psychologist$prescriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PrescriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   appointments<T extends Prisma.Psychologist$appointmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Psychologist$appointmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AppointmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -1670,6 +1874,7 @@ export interface Prisma__PsychologistClient<T, Null = never, ExtArgs extends run
  */
 export interface PsychologistFieldRefs {
   readonly id: Prisma.FieldRef<"Psychologist", 'String'>
+  readonly userId: Prisma.FieldRef<"Psychologist", 'String'>
   readonly name: Prisma.FieldRef<"Psychologist", 'String'>
   readonly email: Prisma.FieldRef<"Psychologist", 'String'>
   readonly profilePhoto: Prisma.FieldRef<"Psychologist", 'String'>
@@ -1942,6 +2147,10 @@ export type PsychologistCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Ex
    */
   data: Prisma.PsychologistCreateManyInput | Prisma.PsychologistCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PsychologistIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -2012,6 +2221,10 @@ export type PsychologistUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Ex
    * Limit how many Psychologists to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PsychologistIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**

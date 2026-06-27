@@ -1,16 +1,18 @@
 model User {
-    id            String    @id @default(uuid())
+    id            String        @id @default(uuid())
     name          String
     email         String
-    role          UserRoles @default(USER)
-    isDeleted     Boolean   @default(false)
+    role          UserRoles     @default(USER)
+    isDeleted     Boolean       @default(false)
     deletedAt     DateTime?
-    emailVerified Boolean   @default(false)
+    emailVerified Boolean       @default(false)
     image         String?
-    createdAt     DateTime  @default(now())
-    updatedAt     DateTime  @updatedAt
+    createdAt     DateTime      @default(now())
+    updatedAt     DateTime      @updatedAt
     sessions      Session[]
     accounts      Account[]
+    patient       Patient?
+    psychologist  Psychologist?
 
     @@unique([email])
     @@map("user")

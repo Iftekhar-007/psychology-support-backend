@@ -1,3 +1,26 @@
+export type Availability = {
+  day: string;
+  startTime: string;
+  endTime: string;
+};
+
+export type CreatePsychologistProfile = {
+  userId: string;
+  name: string;
+  email: string;
+  profilePhoto?: string;
+  address?: string;
+  contactNumber?: string;
+  sector?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  availability?: Record<string, any>; // or define a proper type
+  appointmentFee?: number;
+  qualification: string;
+  licenseId: string;
+  experience: number;
+};
+
+/*
 model Psychologist {
     id                   String                 @id @default(uuid())
     userId               String                 @unique
@@ -27,3 +50,5 @@ model Psychologist {
     @@index([email, contactNumber, licenseId])
     @@map("psychologists")
 }
+
+*/

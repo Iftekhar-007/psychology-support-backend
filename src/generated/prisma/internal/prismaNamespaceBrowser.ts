@@ -171,6 +171,7 @@ export type VerificationScalarFieldEnum = (typeof VerificationScalarFieldEnum)[k
 
 export const PatientScalarFieldEnum = {
   id: 'id',
+  userId: 'userId',
   name: 'name',
   email: 'email',
   profilePhoto: 'profilePhoto',
@@ -228,6 +229,7 @@ export type PrescriptionScalarFieldEnum = (typeof PrescriptionScalarFieldEnum)[k
 
 export const PsychologistScalarFieldEnum = {
   id: 'id',
+  userId: 'userId',
   name: 'name',
   email: 'email',
   profilePhoto: 'profilePhoto',
