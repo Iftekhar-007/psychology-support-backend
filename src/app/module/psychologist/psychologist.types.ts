@@ -12,6 +12,7 @@ export type CreatePsychologistProfile = {
   address?: string;
   contactNumber?: string;
   sector?: string;
+  verified: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   availability?: Record<string, any>; // or define a proper type
   appointmentFee?: number;
