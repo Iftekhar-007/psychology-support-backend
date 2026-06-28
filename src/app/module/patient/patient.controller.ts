@@ -17,6 +17,32 @@ const createPatient = async (req: Request, res: Response) => {
   }
 };
 
+const getAllPatient = async (req: Request, res: Response) => {
+  try {
+    const data = await patientServices.getAllPatient();
+
+    res.status(200).json({ success: true, data: data });
+  } catch (error: any) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+const getSinglePatientById = async (req: Request, res: Response) => {
+  try {
+    const patientId = req.query.id;
+
+    const data = await patientServices.getSinglePatientById(
+      patientId as string,
+    );
+
+    res.status(200).json({ success: true, data: data });
+  } catch (error: any) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
 export const patientController = {
   createPatient,
+  getAllPatient,
+  getSinglePatientById,
 };

@@ -10,4 +10,16 @@ router.post(
   patientController.createPatient,
 );
 
+router.get(
+  "/all-patient",
+  authMiddle(UserRole.admin),
+  patientController.getAllPatient,
+);
+
+router.get(
+  "/:patientId",
+  authMiddle(UserRole.admin),
+  patientController.getSinglePatientById,
+);
+
 export const patientRoutes = router;

@@ -37,6 +37,31 @@ const createPatient = async (patientData: CreatePatient, userId: string) => {
   return result;
 };
 
+const getAllPatient = async () => {
+  const result = await prisma.patient.findMany({
+    include: {
+      user: true,
+    },
+  });
+
+  return result;
+};
+
+const getSinglePatientById = async (patientId: string) => {
+  const result = await prisma.patient.findUnique({
+    where: {
+      id: patientId,
+    },
+    include: {
+      user: true,
+    },
+  });
+
+  return result;
+};
+
 export const patientServices = {
   createPatient,
+  getAllPatient,
+  getSinglePatientById,
 };
