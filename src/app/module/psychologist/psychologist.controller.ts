@@ -17,6 +17,29 @@ const createPsychologist = async (req: Request, res: Response) => {
   }
 };
 
+const getAllPsychogist = async (req: Request, res: Response) => {
+  try {
+    const data = await psychologistServices.getAllPsychologist();
+    res.status(200).json({ success: true, data: data });
+  } catch (error: any) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+const getSinglePsychologistById = async (req: Request, res: Response) => {
+  try {
+    const { psychologistId } = req.params;
+    const data = await psychologistServices.getSinglePsychologistById(
+      psychologistId as string,
+    );
+    res.status(200).json({ success: true, data: data });
+  } catch (error: any) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
 export const psychologistController = {
   createPsychologist,
+  getAllPsychogist,
+  getSinglePsychologistById,
 };

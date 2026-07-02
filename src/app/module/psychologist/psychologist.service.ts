@@ -13,7 +13,7 @@ const createPsychologist = async (
   });
 
   if (isUserAlreadyPatient) {
-    throw new Error("User is already registered as a patient.");
+    throw new Error("User is already registered as a psychologist.");
   }
 
   const user = await prisma.user.findUnique({
@@ -22,13 +22,13 @@ const createPsychologist = async (
     },
   });
 
-  if (user?.role !== UserRoles.PATIENT) {
-    throw new Error("User role is not patient.");
+  if (user?.role !== UserRoles.PSYCHOLOGIST) {
+    throw new Error("User role is not psychologist.");
   }
 
-  const result = await prisma.patient.create({
+  const result = await prisma.psychologist.create({
     data: {
-      userId: psychologistData.userId,
+      userId: userId,
       name: psychologistData.name,
       email: psychologistData.email,
       contactNumber: psychologistData.contactNumber,
@@ -49,6 +49,31 @@ const createPsychologist = async (
   return result;
 };
 
+const getAllPsychologist = async () => {
+  const allPsychologist = await prisma.psychologist.findMany({
+    include: {
+      user: true,
+    },
+  });
+
+  return allPsychologist;
+};
+
+const getSinglePsychologistById = async (psychologistId: string) => {
+  const psychologist = await prisma.psychologist.findUnique({
+    where: {
+      id: psychologistId,
+    },
+    include: {
+      user: true,
+    },
+  });
+
+  return psychologist;
+};
+
 export const psychologistServices = {
   createPsychologist,
+  getAllPsychologist,
+  getSinglePsychologistById,
 };

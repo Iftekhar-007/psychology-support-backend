@@ -10,4 +10,11 @@ router.post(
   psychologistController.createPsychologist,
 );
 
+router.get("/all-psychologists", psychologistController.getAllPsychogist);
+
+router.get(
+  "/:psychologistId",
+  psychologistController.getSinglePsychologistById,
+);
+
 export const PsychologistRoutes = router;

@@ -29,7 +29,7 @@ const getAllPatient = async (req: Request, res: Response) => {
 
 const getSinglePatientById = async (req: Request, res: Response) => {
   try {
-    const patientId = req.query.id;
+    const { patientId } = req.params;
 
     const data = await patientServices.getSinglePatientById(
       patientId as string,
