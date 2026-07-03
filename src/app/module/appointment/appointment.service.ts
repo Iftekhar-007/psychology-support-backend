@@ -6,6 +6,47 @@ import { prisma } from "../../lib/prisma";
 import { UserRole } from "../../middlewares/auth";
 import { createAppointment } from "./appointment.type";
 
+// const createAppointment = async (
+//   appointmentData: createAppointment,
+//   userId: string,
+// ) => {
+//   const isUser = await prisma.user.findUnique({
+//     where: {
+//       id: userId,
+//     },
+//   });
+
+//   if (!isUser) {
+//     throw new Error("only user can create an appointment");
+//   }
+
+//   const isUserPatient = await prisma.patient.findUnique({
+//     where: {
+//       userId: userId,
+//     },
+//   });
+
+//   if (!isUserPatient || isUser.role !== UserRole.patient) {
+//     throw new Error("Only patient create an appointment");
+//   }
+
+//   const data = await prisma.appointment.create({
+//     data: {
+//       date: appointmentData.date,
+//       recordHistory: appointmentData.recordHistory,
+//       patientIssue: appointmentData.patientIssue,
+//       meetLink: appointmentData.meetLink,
+//       psychologistid: appointmentData.psychologistid,
+//       duration: appointmentData.duration,
+//       patientId: appointmentData.patientId,
+//       paymentStatus: PaymentStatus.PENDING,
+//       appointmentStatus: AppointmentStatus.PENDING,
+//     },
+//   });
+
+//   return data;
+// };
+
 const createAppointment = async (
   appointmentData: createAppointment,
   userId: string,
@@ -17,7 +58,11 @@ const createAppointment = async (
   });
 
   if (!isUser) {
-    throw new Error("only user can create an appointment");
+    throw new Error("Only a registered user can create an appointment");
+  }
+
+  if (isUser.role !== UserRole.patient) {
+    throw new Error("Only a patient can create an appointment");
   }
 
   const isUserPatient = await prisma.patient.findUnique({
@@ -26,8 +71,20 @@ const createAppointment = async (
     },
   });
 
-  if (!isUserPatient || isUser.role !== UserRole.patient) {
-    throw new Error("Only patient create an appointment");
+  if (!isUserPatient) {
+    throw new Error("Patient profile not found for this user");
+  }
+
+  const patientId = isUserPatient.id;
+
+  const isPsychologist = await prisma.psychologist.findUnique({
+    where: {
+      id: appointmentData.psychologistid,
+    },
+  });
+
+  if (!isPsychologist) {
+    throw new Error("Psychologist not found");
   }
 
   const data = await prisma.appointment.create({
@@ -35,10 +92,10 @@ const createAppointment = async (
       date: appointmentData.date,
       recordHistory: appointmentData.recordHistory,
       patientIssue: appointmentData.patientIssue,
-      meetLink: appointmentData.meetLink,
       psychologistid: appointmentData.psychologistid,
       duration: appointmentData.duration,
-      patientId: appointmentData.patientId,
+      patientId: patientId,
+      meetLink: null, // will be generated once psychologist accepts
       paymentStatus: PaymentStatus.PENDING,
       appointmentStatus: AppointmentStatus.PENDING,
     },
