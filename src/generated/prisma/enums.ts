@@ -40,7 +40,8 @@ export type PaymentStatus = (typeof PaymentStatus)[keyof typeof PaymentStatus]
 export const AppointmentStatus = {
   PENDING: 'PENDING',
   CONFIRMED: 'CONFIRMED',
-  CANCELLED: 'CANCELLED'
+  CANCELLED: 'CANCELLED',
+  COMPLETED: 'COMPLETED'
 } as const
 
 export type AppointmentStatus = (typeof AppointmentStatus)[keyof typeof AppointmentStatus]
