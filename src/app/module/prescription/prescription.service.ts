@@ -3,6 +3,71 @@ import { UserRole } from "../../middlewares/auth";
 import { createPrescription, updatePrescription } from "./prescription.type";
 import { AppointmentStatus } from "../../../generated/prisma/enums";
 
+// const createPrescriptionEntry = async (
+//   prescriptionData: createPrescription,
+//   userId: string,
+// ) => {
+//   const isUser = await prisma.user.findUnique({
+//     where: { id: userId },
+//   });
+
+//   if (!isUser) {
+//     throw new Error("Only a registered user can create a prescription");
+//   }
+
+//   if (isUser.role !== UserRole.psychologist) {
+//     throw new Error("Only a psychologist can create a prescription");
+//   }
+
+//   const psychologist = await prisma.psychologist.findUnique({
+//     where: { userId },
+//   });
+
+//   if (!psychologist) {
+//     throw new Error("Psychologist profile not found for this user");
+//   }
+
+//   const appointment = await prisma.appointment.findUnique({
+//     where: { id: prescriptionData.appointmentId },
+//   });
+
+//   if (!appointment) {
+//     throw new Error("Appointment not found");
+//   }
+
+//   if (appointment.psychologistid !== psychologist.id) {
+//     throw new Error("You can only prescribe for your own appointments");
+//   }
+
+//   if (appointment.appointmentStatus !== AppointmentStatus.COMPLETED) {
+//     throw new Error(
+//       "Prescription can only be created after the appointment is completed",
+//     );
+//   }
+
+//   const existingPrescription = await prisma.prescription.findUnique({
+//     where: { appointmentId: prescriptionData.appointmentId },
+//   });
+
+//   if (existingPrescription) {
+//     throw new Error("A prescription already exists for this appointment");
+//   }
+
+//   const data = await prisma.prescription.create({
+//     data: {
+//       patientId: appointment.patientId,
+//       psychologistId: psychologist.id,
+//       appointmentId: appointment.id,
+//       medication: prescriptionData.medication,
+//       exercise: prescriptionData.exercise,
+//       duration: prescriptionData.duration,
+//       notes: prescriptionData.notes,
+//     },
+//   });
+
+//   return data;
+// };
+
 const createPrescriptionEntry = async (
   prescriptionData: createPrescription,
   userId: string,
@@ -39,9 +104,16 @@ const createPrescriptionEntry = async (
     throw new Error("You can only prescribe for your own appointments");
   }
 
-  if (appointment.appointmentStatus !== AppointmentStatus.COMPLETED) {
+  // Changed: require CONFIRMED (not COMPLETED) — prescription creation is what marks it COMPLETED
+  if (appointment.appointmentStatus !== AppointmentStatus.CONFIRMED) {
     throw new Error(
-      "Prescription can only be created after the appointment is completed",
+      "Prescription can only be created for a confirmed appointment",
+    );
+  }
+
+  if (appointment.date > new Date()) {
+    throw new Error(
+      "Cannot create a prescription before the appointment's scheduled time",
     );
   }
 
@@ -53,16 +125,25 @@ const createPrescriptionEntry = async (
     throw new Error("A prescription already exists for this appointment");
   }
 
-  const data = await prisma.prescription.create({
-    data: {
-      patientId: appointment.patientId,
-      psychologistId: psychologist.id,
-      appointmentId: appointment.id,
-      medication: prescriptionData.medication,
-      exercise: prescriptionData.exercise,
-      duration: prescriptionData.duration,
-      notes: prescriptionData.notes,
-    },
+  const data = await prisma.$transaction(async (tx) => {
+    const prescription = await tx.prescription.create({
+      data: {
+        patientId: appointment.patientId,
+        psychologistId: psychologist.id,
+        appointmentId: appointment.id,
+        medication: prescriptionData.medication,
+        exercise: prescriptionData.exercise,
+        duration: prescriptionData.duration,
+        notes: prescriptionData.notes,
+      },
+    });
+
+    await tx.appointment.update({
+      where: { id: appointment.id },
+      data: { appointmentStatus: AppointmentStatus.COMPLETED },
+    });
+
+    return prescription;
   });
 
   return data;
