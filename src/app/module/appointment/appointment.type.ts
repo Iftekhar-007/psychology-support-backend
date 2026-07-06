@@ -1,3 +1,5 @@
+import { AppointmentStatus } from "../../../generated/prisma/browser";
+
 export type createAppointment = {
   date: Date;
   recordHistory: string;
@@ -8,6 +10,10 @@ export type createAppointment = {
   patientId: string;
   paymentStatus: string;
   appointmentStatus: string;
+};
+
+export type updateAppointmentStatus = {
+  appointmentStatus: AppointmentStatus;
 };
 
 /*

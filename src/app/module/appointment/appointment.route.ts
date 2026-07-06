@@ -10,4 +10,16 @@ router.post(
   appointmentController.createAppointment,
 );
 
+router.get(
+  "/my-appointments",
+  authMiddle(UserRole.patient, UserRole.psychologist, UserRole.admin),
+  appointmentController.getMyAppointments,
+);
+
+router.patch(
+  "/update-appointment-status/:id",
+  authMiddle(UserRole.psychologist),
+  appointmentController.updateAppointmentStatus,
+);
+
 export const appointmentRoutes = router;
