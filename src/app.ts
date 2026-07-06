@@ -9,13 +9,14 @@ const app: Application = express();
 export const PORT = process.env.PORT || 5000;
 
 // Middleware to parse incoming JSON payloads
-app.use(express.json());
 
 app.post(
   "/webhook",
   express.raw({ type: "application/json" }),
   paymentController.handleStripeWebhookEvent,
 );
+
+app.use(express.json());
 
 app.use(
   cors({

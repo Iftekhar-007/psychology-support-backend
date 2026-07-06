@@ -4,6 +4,32 @@ import { stripe } from "../../../config/stripe.config";
 import { paymentService } from "./payment.service";
 import { UserRole } from "../../middlewares/auth";
 
+// const initiatePayment = async (req: Request, res: Response) => {
+//   try {
+//     const user = req.user;
+
+//     if (!user?.id) {
+//       res.status(401).json({ success: false, message: "Unauthorized" });
+//       return;
+//     }
+
+//     const { appointmentId } = req.body;
+
+//     if (!appointmentId) {
+//       res
+//         .status(400)
+//         .json({ success: false, message: "appointmentId is required" });
+//       return;
+//     }
+
+//     const data = await paymentService.initiatePayment(appointmentId, user.id);
+
+//     res.status(200).json({ success: true, data });
+//   } catch (error: any) {
+//     res.status(500).json({ success: false, message: error.message });
+//   }
+// };
+
 const initiatePayment = async (req: Request, res: Response) => {
   try {
     const user = req.user;
@@ -13,12 +39,12 @@ const initiatePayment = async (req: Request, res: Response) => {
       return;
     }
 
-    const { appointmentId } = req.body;
+    const { appointmentId } = req.params;
 
-    if (!appointmentId) {
+    if (typeof appointmentId !== "string") {
       res
         .status(400)
-        .json({ success: false, message: "appointmentId is required" });
+        .json({ success: false, message: "Invalid appointment id" });
       return;
     }
 
