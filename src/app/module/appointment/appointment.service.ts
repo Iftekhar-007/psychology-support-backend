@@ -150,6 +150,64 @@ const getMyAppointments = async (userId: string, role: UserRole) => {
   throw new Error("Invalid role");
 };
 
+// const updateAppointmentStatus = async (
+//   appointmentId: string,
+//   status: AppointmentStatus,
+//   userId: string,
+// ) => {
+//   const isUser = await prisma.user.findUnique({
+//     where: { id: userId },
+//   });
+
+//   if (!isUser) {
+//     throw new Error("Only a registered user can update an appointment");
+//   }
+
+//   if (isUser.role !== UserRole.psychologist) {
+//     throw new Error("Only a psychologist can update appointment status");
+//   }
+
+//   const psychologist = await prisma.psychologist.findUnique({
+//     where: { userId },
+//   });
+
+//   if (!psychologist) {
+//     throw new Error("Psychologist profile not found for this user");
+//   }
+
+//   const appointment = await prisma.appointment.findUnique({
+//     where: { id: appointmentId },
+//   });
+
+//   if (!appointment) {
+//     throw new Error("Appointment not found");
+//   }
+
+//   if (appointment.psychologistid !== psychologist.id) {
+//     throw new Error("You can only update your own appointments");
+//   }
+
+//   if (appointment.appointmentStatus === AppointmentStatus.CANCELLED) {
+//     throw new Error("Cannot update a cancelled appointment");
+//   }
+
+//   const allowedStatuses: AppointmentStatus[] = [
+//     AppointmentStatus.CONFIRMED,
+//     AppointmentStatus.CANCELLED,
+//   ];
+
+//   if (!allowedStatuses.includes(status)) {
+//     throw new Error("Invalid status update");
+//   }
+
+//   const data = await prisma.appointment.update({
+//     where: { id: appointmentId },
+//     data: { appointmentStatus: status },
+//   });
+
+//   return data;
+// };
+
 const updateAppointmentStatus = async (
   appointmentId: string,
   status: AppointmentStatus,
@@ -187,17 +245,27 @@ const updateAppointmentStatus = async (
     throw new Error("You can only update your own appointments");
   }
 
-  if (appointment.appointmentStatus === AppointmentStatus.CANCELLED) {
-    throw new Error("Cannot update a cancelled appointment");
+  // Define valid transitions explicitly
+  const validTransitions: Record<AppointmentStatus, AppointmentStatus[]> = {
+    PENDING: [AppointmentStatus.CONFIRMED, AppointmentStatus.CANCELLED],
+    CONFIRMED: [AppointmentStatus.COMPLETED, AppointmentStatus.CANCELLED],
+    CANCELLED: [],
+    COMPLETED: [],
+  };
+
+  const allowedNextStatuses = validTransitions[appointment.appointmentStatus];
+
+  if (!allowedNextStatuses.includes(status)) {
+    throw new Error(
+      `Cannot change status from ${appointment.appointmentStatus} to ${status}`,
+    );
   }
 
-  const allowedStatuses: AppointmentStatus[] = [
-    AppointmentStatus.CONFIRMED,
-    AppointmentStatus.CANCELLED,
-  ];
-
-  if (!allowedStatuses.includes(status)) {
-    throw new Error("Invalid status update");
+  // Optional: only allow marking COMPLETED after the appointment's scheduled time has passed
+  if (status === AppointmentStatus.COMPLETED && appointment.date > new Date()) {
+    throw new Error(
+      "Cannot mark an appointment as completed before its scheduled time",
+    );
   }
 
   const data = await prisma.appointment.update({
@@ -213,5 +281,11 @@ export const appointmentServices = {
   getMyAppointments,
   updateAppointmentStatus,
 };
+
+// export const appointmentServices = {
+//   createAppointment,
+//   getMyAppointments,
+//   updateAppointmentStatus,
+// };
 
 // export const appointmentServices = { createAppointment, getMyAppointments };

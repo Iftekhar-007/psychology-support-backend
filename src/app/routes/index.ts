@@ -11,4 +11,6 @@ router.use("/psychologist", PsychologistRoutes);
 
 router.use("/appointment", appointmentRoutes);
 
+router.use("/prescription,");
+
 export const indexRoutes = router;
