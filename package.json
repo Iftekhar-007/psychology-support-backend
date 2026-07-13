@@ -14,7 +14,8 @@
     "push": "prisma db push",
     "pull": "prisma db pull",
     "reset": "prisma migrate reset",
-    "lint": "eslint ./src/**/*"
+    "lint": "eslint ./src/**/*",
+    "seed:admin": "tsx src/scripts/seed-admin.ts"
   },
   "keywords": [],
   "author": "",
@@ -40,6 +41,7 @@
     "@types/pg": "^8.20.0",
     "eslint": "^10.5.0",
     "prisma": "^7.8.0",
+    "ts-node": "^10.9.2",
     "tsx": "^4.22.4",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.61.0"
