@@ -18,7 +18,6 @@ declare global {
         email: string;
         name: string;
         role: UserRole;
-        isVerified: boolean;
       };
     }
   }
@@ -42,16 +41,9 @@ const authMiddle = (...roles: UserRole[]) => {
       email: session.user.email,
       name: session.user.name,
       role: session.user.role as UserRole,
-      isVerified: session.user.isVerified as boolean,
     };
 
     // Admins are exempt — they're the ones doing the verifying
-    if (req.user.role !== UserRole.admin && !req.user.isVerified) {
-      return res.status(403).json({
-        success: false,
-        message: "Your account is pending admin verification.",
-      });
-    }
 
     if (roles && !roles.includes(req.user.role as UserRole)) {
       return res.status(403).json({

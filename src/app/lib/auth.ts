@@ -29,11 +29,6 @@ export const auth = betterAuth({
         required: true,
         defaultValue: false,
       },
-      isVerified: {
-        type: "boolean",
-        required: true,
-        defaultValue: false,
-      },
       deletedAt: {
         type: "date",
         required: false,
