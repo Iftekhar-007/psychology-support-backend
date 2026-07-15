@@ -25,7 +25,7 @@ const createPatient = async (patientData: CreatePatient, userId: string) => {
 
   const result = await prisma.patient.create({
     data: {
-      userId: patientData.userId,
+      userId: userId,
       name: patientData.name,
       email: patientData.email,
       contactNumber: patientData.contactNumber,

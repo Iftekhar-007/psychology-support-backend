@@ -3,9 +3,16 @@ import { userServices } from "./user.service";
 
 const getMyStatus = async (req: Request, res: Response) => {
   const user = req.user;
-  const userId = user?.id; // auth middleware থেকে
+  // auth middleware থেকে
 
-  const result = await userServices.getMyStatus(userId as string);
+  if (!user) {
+    return res.status(401).json({
+      success: false,
+      message: "Unauthorized",
+    });
+  }
+
+  const result = await userServices.getMyStatus(user.id as string);
 
   res.status(200).json({
     success: true,
@@ -13,8 +20,6 @@ const getMyStatus = async (req: Request, res: Response) => {
   });
 };
 
-const userController = {
+export const userController = {
   getMyStatus,
 };
-
-export default userController;

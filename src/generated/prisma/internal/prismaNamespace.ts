@@ -1422,7 +1422,7 @@ export const PsychologistScalarFieldEnum = {
   profilePhoto: 'profilePhoto',
   address: 'address',
   contactNumber: 'contactNumber',
-  isVerified: 'isVerified',
+  verified: 'verified',
   sector: 'sector',
   availability: 'availability',
   appointmentFee: 'appointmentFee',

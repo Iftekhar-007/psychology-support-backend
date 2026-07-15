@@ -44,7 +44,7 @@ export type PsychologistMinAggregateOutputType = {
   profilePhoto: string | null
   address: string | null
   contactNumber: string | null
-  isVerified: boolean | null
+  verified: boolean | null
   sector: string | null
   appointmentFee: number | null
   qualification: string | null
@@ -66,7 +66,7 @@ export type PsychologistMaxAggregateOutputType = {
   profilePhoto: string | null
   address: string | null
   contactNumber: string | null
-  isVerified: boolean | null
+  verified: boolean | null
   sector: string | null
   appointmentFee: number | null
   qualification: string | null
@@ -88,7 +88,7 @@ export type PsychologistCountAggregateOutputType = {
   profilePhoto: number
   address: number
   contactNumber: number
-  isVerified: number
+  verified: number
   sector: number
   availability: number
   appointmentFee: number
@@ -123,7 +123,7 @@ export type PsychologistMinAggregateInputType = {
   profilePhoto?: true
   address?: true
   contactNumber?: true
-  isVerified?: true
+  verified?: true
   sector?: true
   appointmentFee?: true
   qualification?: true
@@ -145,7 +145,7 @@ export type PsychologistMaxAggregateInputType = {
   profilePhoto?: true
   address?: true
   contactNumber?: true
-  isVerified?: true
+  verified?: true
   sector?: true
   appointmentFee?: true
   qualification?: true
@@ -167,7 +167,7 @@ export type PsychologistCountAggregateInputType = {
   profilePhoto?: true
   address?: true
   contactNumber?: true
-  isVerified?: true
+  verified?: true
   sector?: true
   availability?: true
   appointmentFee?: true
@@ -277,7 +277,7 @@ export type PsychologistGroupByOutputType = {
   profilePhoto: string | null
   address: string | null
   contactNumber: string | null
-  isVerified: boolean
+  verified: boolean
   sector: string | null
   availability: runtime.JsonValue | null
   appointmentFee: number
@@ -323,7 +323,7 @@ export type PsychologistWhereInput = {
   profilePhoto?: Prisma.StringNullableFilter<"Psychologist"> | string | null
   address?: Prisma.StringNullableFilter<"Psychologist"> | string | null
   contactNumber?: Prisma.StringNullableFilter<"Psychologist"> | string | null
-  isVerified?: Prisma.BoolFilter<"Psychologist"> | boolean
+  verified?: Prisma.BoolFilter<"Psychologist"> | boolean
   sector?: Prisma.StringNullableFilter<"Psychologist"> | string | null
   availability?: Prisma.JsonNullableFilter<"Psychologist">
   appointmentFee?: Prisma.FloatFilter<"Psychologist"> | number
@@ -350,7 +350,7 @@ export type PsychologistOrderByWithRelationInput = {
   profilePhoto?: Prisma.SortOrderInput | Prisma.SortOrder
   address?: Prisma.SortOrderInput | Prisma.SortOrder
   contactNumber?: Prisma.SortOrderInput | Prisma.SortOrder
-  isVerified?: Prisma.SortOrder
+  verified?: Prisma.SortOrder
   sector?: Prisma.SortOrderInput | Prisma.SortOrder
   availability?: Prisma.SortOrderInput | Prisma.SortOrder
   appointmentFee?: Prisma.SortOrder
@@ -381,7 +381,7 @@ export type PsychologistWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"Psychologist"> | string
   profilePhoto?: Prisma.StringNullableFilter<"Psychologist"> | string | null
   address?: Prisma.StringNullableFilter<"Psychologist"> | string | null
-  isVerified?: Prisma.BoolFilter<"Psychologist"> | boolean
+  verified?: Prisma.BoolFilter<"Psychologist"> | boolean
   sector?: Prisma.StringNullableFilter<"Psychologist"> | string | null
   availability?: Prisma.JsonNullableFilter<"Psychologist">
   appointmentFee?: Prisma.FloatFilter<"Psychologist"> | number
@@ -407,7 +407,7 @@ export type PsychologistOrderByWithAggregationInput = {
   profilePhoto?: Prisma.SortOrderInput | Prisma.SortOrder
   address?: Prisma.SortOrderInput | Prisma.SortOrder
   contactNumber?: Prisma.SortOrderInput | Prisma.SortOrder
-  isVerified?: Prisma.SortOrder
+  verified?: Prisma.SortOrder
   sector?: Prisma.SortOrderInput | Prisma.SortOrder
   availability?: Prisma.SortOrderInput | Prisma.SortOrder
   appointmentFee?: Prisma.SortOrder
@@ -438,7 +438,7 @@ export type PsychologistScalarWhereWithAggregatesInput = {
   profilePhoto?: Prisma.StringNullableWithAggregatesFilter<"Psychologist"> | string | null
   address?: Prisma.StringNullableWithAggregatesFilter<"Psychologist"> | string | null
   contactNumber?: Prisma.StringNullableWithAggregatesFilter<"Psychologist"> | string | null
-  isVerified?: Prisma.BoolWithAggregatesFilter<"Psychologist"> | boolean
+  verified?: Prisma.BoolWithAggregatesFilter<"Psychologist"> | boolean
   sector?: Prisma.StringNullableWithAggregatesFilter<"Psychologist"> | string | null
   availability?: Prisma.JsonNullableWithAggregatesFilter<"Psychologist">
   appointmentFee?: Prisma.FloatWithAggregatesFilter<"Psychologist"> | number
@@ -460,7 +460,7 @@ export type PsychologistCreateInput = {
   profilePhoto?: string | null
   address?: string | null
   contactNumber?: string | null
-  isVerified?: boolean
+  verified?: boolean
   sector?: string | null
   availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   appointmentFee?: number
@@ -487,7 +487,7 @@ export type PsychologistUncheckedCreateInput = {
   profilePhoto?: string | null
   address?: string | null
   contactNumber?: string | null
-  isVerified?: boolean
+  verified?: boolean
   sector?: string | null
   availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   appointmentFee?: number
@@ -512,7 +512,7 @@ export type PsychologistUpdateInput = {
   profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   appointmentFee?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -539,7 +539,7 @@ export type PsychologistUncheckedUpdateInput = {
   profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   appointmentFee?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -565,7 +565,7 @@ export type PsychologistCreateManyInput = {
   profilePhoto?: string | null
   address?: string | null
   contactNumber?: string | null
-  isVerified?: boolean
+  verified?: boolean
   sector?: string | null
   availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   appointmentFee?: number
@@ -587,7 +587,7 @@ export type PsychologistUpdateManyMutationInput = {
   profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   appointmentFee?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -610,7 +610,7 @@ export type PsychologistUncheckedUpdateManyInput = {
   profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   appointmentFee?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -643,7 +643,7 @@ export type PsychologistCountOrderByAggregateInput = {
   profilePhoto?: Prisma.SortOrder
   address?: Prisma.SortOrder
   contactNumber?: Prisma.SortOrder
-  isVerified?: Prisma.SortOrder
+  verified?: Prisma.SortOrder
   sector?: Prisma.SortOrder
   availability?: Prisma.SortOrder
   appointmentFee?: Prisma.SortOrder
@@ -671,7 +671,7 @@ export type PsychologistMaxOrderByAggregateInput = {
   profilePhoto?: Prisma.SortOrder
   address?: Prisma.SortOrder
   contactNumber?: Prisma.SortOrder
-  isVerified?: Prisma.SortOrder
+  verified?: Prisma.SortOrder
   sector?: Prisma.SortOrder
   appointmentFee?: Prisma.SortOrder
   qualification?: Prisma.SortOrder
@@ -693,7 +693,7 @@ export type PsychologistMinOrderByAggregateInput = {
   profilePhoto?: Prisma.SortOrder
   address?: Prisma.SortOrder
   contactNumber?: Prisma.SortOrder
-  isVerified?: Prisma.SortOrder
+  verified?: Prisma.SortOrder
   sector?: Prisma.SortOrder
   appointmentFee?: Prisma.SortOrder
   qualification?: Prisma.SortOrder
@@ -797,7 +797,7 @@ export type PsychologistCreateWithoutAppointmentsInput = {
   profilePhoto?: string | null
   address?: string | null
   contactNumber?: string | null
-  isVerified?: boolean
+  verified?: boolean
   sector?: string | null
   availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   appointmentFee?: number
@@ -823,7 +823,7 @@ export type PsychologistUncheckedCreateWithoutAppointmentsInput = {
   profilePhoto?: string | null
   address?: string | null
   contactNumber?: string | null
-  isVerified?: boolean
+  verified?: boolean
   sector?: string | null
   availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   appointmentFee?: number
@@ -863,7 +863,7 @@ export type PsychologistUpdateWithoutAppointmentsInput = {
   profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   appointmentFee?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -889,7 +889,7 @@ export type PsychologistUncheckedUpdateWithoutAppointmentsInput = {
   profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   appointmentFee?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -913,7 +913,7 @@ export type PsychologistCreateWithoutUserInput = {
   profilePhoto?: string | null
   address?: string | null
   contactNumber?: string | null
-  isVerified?: boolean
+  verified?: boolean
   sector?: string | null
   availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   appointmentFee?: number
@@ -938,7 +938,7 @@ export type PsychologistUncheckedCreateWithoutUserInput = {
   profilePhoto?: string | null
   address?: string | null
   contactNumber?: string | null
-  isVerified?: boolean
+  verified?: boolean
   sector?: string | null
   availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   appointmentFee?: number
@@ -979,7 +979,7 @@ export type PsychologistUpdateWithoutUserInput = {
   profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   appointmentFee?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1004,7 +1004,7 @@ export type PsychologistUncheckedUpdateWithoutUserInput = {
   profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   appointmentFee?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1029,7 +1029,7 @@ export type PsychologistCreateWithoutPatientprescriptionsInput = {
   profilePhoto?: string | null
   address?: string | null
   contactNumber?: string | null
-  isVerified?: boolean
+  verified?: boolean
   sector?: string | null
   availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   appointmentFee?: number
@@ -1055,7 +1055,7 @@ export type PsychologistUncheckedCreateWithoutPatientprescriptionsInput = {
   profilePhoto?: string | null
   address?: string | null
   contactNumber?: string | null
-  isVerified?: boolean
+  verified?: boolean
   sector?: string | null
   availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   appointmentFee?: number
@@ -1095,7 +1095,7 @@ export type PsychologistUpdateWithoutPatientprescriptionsInput = {
   profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   appointmentFee?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1121,7 +1121,7 @@ export type PsychologistUncheckedUpdateWithoutPatientprescriptionsInput = {
   profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   appointmentFee?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1145,7 +1145,7 @@ export type PsychologistCreateWithoutPrescriptionsInput = {
   profilePhoto?: string | null
   address?: string | null
   contactNumber?: string | null
-  isVerified?: boolean
+  verified?: boolean
   sector?: string | null
   availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   appointmentFee?: number
@@ -1171,7 +1171,7 @@ export type PsychologistUncheckedCreateWithoutPrescriptionsInput = {
   profilePhoto?: string | null
   address?: string | null
   contactNumber?: string | null
-  isVerified?: boolean
+  verified?: boolean
   sector?: string | null
   availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   appointmentFee?: number
@@ -1211,7 +1211,7 @@ export type PsychologistUpdateWithoutPrescriptionsInput = {
   profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   appointmentFee?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1237,7 +1237,7 @@ export type PsychologistUncheckedUpdateWithoutPrescriptionsInput = {
   profilePhoto?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   appointmentFee?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1311,7 +1311,7 @@ export type PsychologistSelect<ExtArgs extends runtime.Types.Extensions.Internal
   profilePhoto?: boolean
   address?: boolean
   contactNumber?: boolean
-  isVerified?: boolean
+  verified?: boolean
   sector?: boolean
   availability?: boolean
   appointmentFee?: boolean
@@ -1339,7 +1339,7 @@ export type PsychologistSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   profilePhoto?: boolean
   address?: boolean
   contactNumber?: boolean
-  isVerified?: boolean
+  verified?: boolean
   sector?: boolean
   availability?: boolean
   appointmentFee?: boolean
@@ -1363,7 +1363,7 @@ export type PsychologistSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   profilePhoto?: boolean
   address?: boolean
   contactNumber?: boolean
-  isVerified?: boolean
+  verified?: boolean
   sector?: boolean
   availability?: boolean
   appointmentFee?: boolean
@@ -1387,7 +1387,7 @@ export type PsychologistSelectScalar = {
   profilePhoto?: boolean
   address?: boolean
   contactNumber?: boolean
-  isVerified?: boolean
+  verified?: boolean
   sector?: boolean
   availability?: boolean
   appointmentFee?: boolean
@@ -1402,7 +1402,7 @@ export type PsychologistSelectScalar = {
   deletedAt?: boolean
 }
 
-export type PsychologistOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "name" | "email" | "profilePhoto" | "address" | "contactNumber" | "isVerified" | "sector" | "availability" | "appointmentFee" | "qualification" | "licenseId" | "experience" | "role" | "status" | "createdAt" | "updatedAt" | "deleted" | "deletedAt", ExtArgs["result"]["psychologist"]>
+export type PsychologistOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "name" | "email" | "profilePhoto" | "address" | "contactNumber" | "verified" | "sector" | "availability" | "appointmentFee" | "qualification" | "licenseId" | "experience" | "role" | "status" | "createdAt" | "updatedAt" | "deleted" | "deletedAt", ExtArgs["result"]["psychologist"]>
 export type PsychologistInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   patientprescriptions?: boolean | Prisma.Psychologist$patientprescriptionsArgs<ExtArgs>
@@ -1433,7 +1433,7 @@ export type $PsychologistPayload<ExtArgs extends runtime.Types.Extensions.Intern
     profilePhoto: string | null
     address: string | null
     contactNumber: string | null
-    isVerified: boolean
+    verified: boolean
     sector: string | null
     availability: runtime.JsonValue | null
     appointmentFee: number
@@ -1880,7 +1880,7 @@ export interface PsychologistFieldRefs {
   readonly profilePhoto: Prisma.FieldRef<"Psychologist", 'String'>
   readonly address: Prisma.FieldRef<"Psychologist", 'String'>
   readonly contactNumber: Prisma.FieldRef<"Psychologist", 'String'>
-  readonly isVerified: Prisma.FieldRef<"Psychologist", 'Boolean'>
+  readonly verified: Prisma.FieldRef<"Psychologist", 'Boolean'>
   readonly sector: Prisma.FieldRef<"Psychologist", 'String'>
   readonly availability: Prisma.FieldRef<"Psychologist", 'Json'>
   readonly appointmentFee: Prisma.FieldRef<"Psychologist", 'Float'>
