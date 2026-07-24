@@ -1,20 +1,19 @@
 import { Router } from "express";
 import { userController } from "./user.controller";
 import authMiddle, { UserRole } from "../../middlewares/auth";
-// import auth from "../../middlewares/auth";
-// import userController from "./user.controller";
 
 const router = Router();
 
 router.get(
-  "/me/status",
-  authMiddle(
-    UserRole.user,
-    UserRole.admin,
-    UserRole.psychologist,
-    UserRole.patient,
-  ),
-  userController.getMyStatus,
+  "/me",
+  authMiddle(UserRole.patient, UserRole.psychologist, UserRole.admin),
+  userController.getMyProfile,
+);
+
+router.patch(
+  "/me",
+  authMiddle(UserRole.patient, UserRole.psychologist, UserRole.admin),
+  userController.updateMyProfile,
 );
 
 export const userRoutes = router;

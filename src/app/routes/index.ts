@@ -8,6 +8,8 @@ import { userRoutes } from "../module/user/user.route";
 
 const router = Router();
 
+// router.use("/user", userRoutes);
+
 router.use("/user", userRoutes);
 
 router.use("/patient", patientRoutes);

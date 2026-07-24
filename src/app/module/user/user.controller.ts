@@ -1,25 +1,35 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from "express";
 import { userServices } from "./user.service";
 
-const getMyStatus = async (req: Request, res: Response) => {
-  const user = req.user;
-  // auth middleware থেকে
+const getMyProfile = async (req: Request, res: Response) => {
+  try {
+    const user = req.user;
 
-  if (!user) {
-    return res.status(401).json({
-      success: false,
-      message: "Unauthorized",
-    });
+    const data = await userServices.getMyProfile(user?.id as string);
+
+    res.status(200).json({ success: true, data: data });
+  } catch (error: any) {
+    res.status(500).json({ success: false, message: error.message });
   }
+};
 
-  const result = await userServices.getMyStatus(user.id as string);
+const updateMyProfile = async (req: Request, res: Response) => {
+  try {
+    const user = req.user;
 
-  res.status(200).json({
-    success: true,
-    data: result,
-  });
+    const data = await userServices.updateMyProfile(
+      user?.id as string,
+      req.body,
+    );
+
+    res.status(200).json({ success: true, data: data });
+  } catch (error: any) {
+    res.status(500).json({ success: false, message: error.message });
+  }
 };
 
 export const userController = {
-  getMyStatus,
+  getMyProfile,
+  updateMyProfile,
 };
