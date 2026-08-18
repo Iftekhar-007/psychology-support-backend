@@ -2,7 +2,7 @@ import {
   AppointmentStatus,
   PaymentStatus,
 } from "../../../generated/prisma/enums";
-import { prisma } from "../../lib/prisma";
+import { prisma } from "../../../lib/prisma";
 import { UserRole } from "../../middlewares/auth";
 import { createAppointment } from "./appointment.type";
 

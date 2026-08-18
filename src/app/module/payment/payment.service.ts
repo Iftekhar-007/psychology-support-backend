@@ -1,5 +1,5 @@
 import { Stripe } from "stripe";
-import { prisma } from "../../lib/prisma";
+import { prisma } from "../../../lib/prisma";
 import { PaymentStatus } from "../../../generated/prisma/enums";
 import { UserRole } from "../../middlewares/auth";
 import { stripe } from "../../../config/stripe.config";

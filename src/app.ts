@@ -1,12 +1,17 @@
 import express, { Application, Request, Response } from "express";
 import cors from "cors";
-import { auth } from "./app/lib/auth";
+import { auth } from "./lib/auth";
 import { toNodeHandler } from "better-auth/node";
 import { indexRoutes } from "./app/routes";
 import { paymentController } from "./app/module/payment/payment.controller";
 
 const app: Application = express();
 export const PORT = process.env.PORT || 5000;
+const allowedOrigins = [
+  process.env.BETTER_AUTH_URL ||
+    "https://psychology-support-backend.vercel.app",
+  process.env.BETTER_AUTH_TRUSTED_ORIGINS, // Production frontend URL
+].filter(Boolean);
 
 // Middleware to parse incoming JSON payloads
 
@@ -18,12 +23,37 @@ app.post(
 
 app.use(express.json());
 
+// app.use(
+//   cors({
+//     origin: ["http://localhost:3000", "http://localhost:5000"],
+//     credentials: true,
+//     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+//     allowedHeaders: ["Content-Type", "Authorization"],
+//   }),
+// );
+
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://localhost:5000"],
+    origin: (origin, callback) => {
+      // Allow requests with no origin (mobile apps, Postman, etc.)
+      if (!origin) return callback(null, true);
+
+      // Check if origin is in allowedOrigins or matches Vercel preview pattern
+      const isAllowed =
+        allowedOrigins.includes(origin) ||
+        /^https:\/\/next-blog-client.*\.vercel\.app$/.test(origin) ||
+        /^https:\/\/.*\.vercel\.app$/.test(origin); // Any Vercel deployment
+
+      if (isAllowed) {
+        callback(null, true);
+      } else {
+        callback(new Error(`Origin ${origin} not allowed by CORS`));
+      }
+    },
     credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization", "Cookie"],
+    exposedHeaders: ["Set-Cookie"],
   }),
 );
 

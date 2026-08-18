@@ -1,5 +1,5 @@
 import { UserRoles } from "../../../generated/prisma/enums";
-import { prisma } from "../../lib/prisma";
+import { prisma } from "../../../lib/prisma";
 import { CreatePatient } from "./patient.types";
 
 const createPatient = async (patientData: CreatePatient, userId: string) => {

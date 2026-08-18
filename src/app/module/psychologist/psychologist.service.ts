@@ -1,5 +1,5 @@
 import { PsychologistStatus, UserRoles } from "../../../generated/prisma/enums";
-import { prisma } from "../../lib/prisma";
+import { prisma } from "../../../lib/prisma";
 import { CreatePsychologistProfile } from "./psychologist.types";
 
 const createPsychologist = async (

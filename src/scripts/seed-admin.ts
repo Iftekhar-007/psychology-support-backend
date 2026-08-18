@@ -1,8 +1,8 @@
 // backend/src/scripts/seed-admin.ts
 import "dotenv/config";
-import { prisma } from "../app/lib/prisma";
+import { prisma } from "../lib/prisma";
 // import auth from "../app/middlewares/auth";
-import { auth } from "../app/lib/auth";
+import { auth } from "../lib/auth";
 // import { prisma } from "../lib/prisma";
 
 const ADMIN_EMAIL = process.env.SEED_ADMIN_EMAIL ?? "admin@yourapp.com";

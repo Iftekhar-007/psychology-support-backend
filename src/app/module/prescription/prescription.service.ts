@@ -1,4 +1,4 @@
-import { prisma } from "../../lib/prisma";
+import { prisma } from "../../../lib/prisma";
 import { UserRole } from "../../middlewares/auth";
 import { createPrescription, updatePrescription } from "./prescription.type";
 import { AppointmentStatus } from "../../../generated/prisma/enums";

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-namespace */
 import { NextFunction, Request, Response } from "express";
-import { auth } from "../lib/auth";
+import { auth } from "../../lib/auth";
 import { fromNodeHeaders } from "better-auth/node";
 
 export enum UserRole {

@@ -1,7 +1,7 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { prisma } from "./prisma";
-import { UserRoles } from "../../generated/prisma/browser";
+import { UserRoles } from "../generated/prisma/browser";
 // If your Prisma file is located elsewhere, you can change the path
 
 export const auth = betterAuth({
@@ -10,7 +10,8 @@ export const auth = betterAuth({
   }),
 
   trustedOrigins: [
-    "http://localhost:3000", // your Next.js frontend
+    "http://localhost:3000",
+    "http://localhost:5000", // your Next.js frontend
   ],
 
   emailAndPassword: {

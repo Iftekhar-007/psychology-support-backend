@@ -1,5 +1,5 @@
 import { UserRoles } from "../../../generated/prisma/enums";
-import { prisma } from "../../lib/prisma";
+import { prisma } from "../../../lib/prisma";
 import { UpdateUserProfile } from "./user.type";
 // import { UpdateUserProfile } from "./user.types";
 
