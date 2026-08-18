@@ -153,7 +153,11 @@ const updateAppointmentStatus = async (
     COMPLETED: [],
   };
 
-  const allowedNextStatuses = validTransitions[appointment.appointmentStatus];
+  // const allowedNextStatuses = validTransitions[appointment.appointmentStatus];
+
+  const currentStatus = appointment.appointmentStatus as AppointmentStatus;
+
+  const allowedNextStatuses = validTransitions[currentStatus];
 
   if (!allowedNextStatuses.includes(status)) {
     throw new Error(
@@ -189,11 +193,3 @@ export const appointmentServices = {
   getMyAppointments,
   updateAppointmentStatus,
 };
-
-// export const appointmentServices = {
-//   createAppointment,
-//   getMyAppointments,
-//   updateAppointmentStatus,
-// };
-
-// export const appointmentServices = { createAppointment, getMyAppointments };
