@@ -1,4 +1,4 @@
-import { AppointmentStatus } from "../../../generated/prisma/browser";
+import { AppointmentStatus } from "../../../generated/prisma/browser.js";
 
 export type createAppointment = {
   date: Date;

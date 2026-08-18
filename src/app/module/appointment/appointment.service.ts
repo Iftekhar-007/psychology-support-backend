@@ -1,10 +1,14 @@
+// import {
+//   AppointmentStatus,
+//   PaymentStatus,
+// } from "../../../generated/prisma/enums";
 import {
   AppointmentStatus,
   PaymentStatus,
-} from "../../../generated/prisma/enums";
-import { prisma } from "../../../lib/prisma";
-import { UserRole } from "../../middlewares/auth";
-import { createAppointment } from "./appointment.type";
+} from "../../../generated/prisma/browser.js";
+import { prisma } from "../../../lib/prisma.js";
+import { UserRole } from "../../middlewares/auth.js";
+import { createAppointment } from "./appointment.type.js";
 
 const createAppointment = async (
   appointmentData: createAppointment,

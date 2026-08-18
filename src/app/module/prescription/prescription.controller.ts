@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { prescriptionServices } from "./prescription.service";
-import { UserRole } from "../../middlewares/auth";
+import { prescriptionServices } from "./prescription.service.js";
+import { UserRole } from "../../middlewares/auth.js";
 
 const createPrescription = async (req: Request, res: Response) => {
   try {

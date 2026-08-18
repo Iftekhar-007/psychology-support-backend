@@ -1,10 +1,10 @@
 import { Stripe } from "stripe";
-import { prisma } from "../../../lib/prisma";
-import { PaymentStatus } from "../../../generated/prisma/enums";
-import { UserRole } from "../../middlewares/auth";
-import { stripe } from "../../../config/stripe.config";
-// import { stripe } from "../../../config/stripe.config";
-// import { envVars } from "../../../config/env";
+import { prisma } from "../../../lib/prisma.js";
+import { PaymentStatus } from "../../../generated/prisma/enums.js";
+import { UserRole } from "../../middlewares/auth.js";
+import { stripe } from "../../../config/stripe.config.js";
+// import { stripe } from "../../../config/stripe.config.js";
+// import { envVars } from "../../../config/env.js";
 
 const APPOINTMENT_PRICE = 50.0; // adjust or make dynamic per psychologist
 

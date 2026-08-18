@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from "express";
-import { patientServices } from "./patient.service";
+import { patientServices } from "./patient.service.js";
 
 const createPatient = async (req: Request, res: Response) => {
   try {

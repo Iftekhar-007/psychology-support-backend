@@ -1,6 +1,6 @@
 import { Router } from "express";
-import authMiddle, { UserRole } from "../../middlewares/auth";
-import { psychologistController } from "./psychologist.controller";
+import authMiddle, { UserRole } from "../../middlewares/auth.js";
+import { psychologistController } from "./psychologist.controller.js";
 
 const router = Router();
 

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from "express";
-import { psychologistServices } from "./psychologist.service";
+import { psychologistServices } from "./psychologist.service.js";
 
 const createPsychologist = async (req: Request, res: Response) => {
   try {

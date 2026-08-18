@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { patientRoutes } from "../module/patient/patient.routes";
-import { PsychologistRoutes } from "../module/psychologist/psychologist.route";
-import { appointmentRoutes } from "../module/appointment/appointment.route";
-import { prescriptionRoutes } from "../module/prescription/prescription.route";
-import { paymentRoutes } from "../module/payment/payment.route";
-import { userRoutes } from "../module/user/user.route";
+import { patientRoutes } from "../module/patient/patient.routes.js";
+import { PsychologistRoutes } from "../module/psychologist/psychologist.route.js";
+import { appointmentRoutes } from "../module/appointment/appointment.route.js";
+import { prescriptionRoutes } from "../module/prescription/prescription.route.js";
+import { paymentRoutes } from "../module/payment/payment.route.js";
+import { userRoutes } from "../module/user/user.route.js";
 
 const router = Router();
 

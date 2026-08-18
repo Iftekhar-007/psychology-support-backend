@@ -1,6 +1,6 @@
-import { UserRoles } from "../../../generated/prisma/enums";
-import { prisma } from "../../../lib/prisma";
-import { CreatePatient } from "./patient.types";
+import { UserRoles } from "../../../generated/prisma/enums.js";
+import { prisma } from "../../../lib/prisma.js";
+import { CreatePatient } from "./patient.types.js";
 
 const createPatient = async (patientData: CreatePatient, userId: string) => {
   const isUserAlreadyPatient = await prisma.patient.findUnique({

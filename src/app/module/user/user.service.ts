@@ -1,7 +1,7 @@
-import { UserRoles } from "../../../generated/prisma/enums";
-import { prisma } from "../../../lib/prisma";
-import { UpdateUserProfile } from "./user.type";
-// import { UpdateUserProfile } from "./user.types";
+import { UserRoles } from "../../../generated/prisma/enums.js";
+import { prisma } from "../../../lib/prisma.js";
+import { UpdateUserProfile } from "./user.type.js";
+// import { UpdateUserProfile } from "./user.types.js";
 
 const getMyProfile = async (userId: string) => {
   const user = await prisma.user.findUnique({

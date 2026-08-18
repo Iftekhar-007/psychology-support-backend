@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { appointmentServices } from "./appointment.service";
-import { UserRole } from "../../middlewares/auth";
+import { appointmentServices } from "./appointment.service.js";
+import { UserRole } from "../../middlewares/auth.js";
 
 const createAppointment = async (req: Request, res: Response) => {
   try {

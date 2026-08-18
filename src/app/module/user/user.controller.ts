@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from "express";
-import { userServices } from "./user.service";
+import { userServices } from "./user.service.js";
 
 const getMyProfile = async (req: Request, res: Response) => {
   try {

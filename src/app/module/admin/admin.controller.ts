@@ -1,7 +1,7 @@
 // backend/src/modules/admin/admin.controller.ts
 import { Request, Response } from "express";
-import { prisma } from "../../../lib/prisma";
-import { adminService } from "./admin.service";
+import { prisma } from "../../../lib/prisma.js";
+import { adminService } from "./admin.service.js";
 
 export const getPendingUsers = async (req: Request, res: Response) => {
   try {

@@ -1,7 +1,7 @@
-import { prisma } from "../../../lib/prisma";
-import { UserRole } from "../../middlewares/auth";
-import { createPrescription, updatePrescription } from "./prescription.type";
-import { AppointmentStatus } from "../../../generated/prisma/enums";
+import { prisma } from "../../../lib/prisma.js";
+import { UserRole } from "../../middlewares/auth.js";
+import { createPrescription, updatePrescription } from "./prescription.type.js";
+import { AppointmentStatus } from "../../../generated/prisma/enums.js";
 
 const createPrescriptionEntry = async (
   prescriptionData: createPrescription,

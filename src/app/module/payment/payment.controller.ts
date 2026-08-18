@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from "express";
-import { stripe } from "../../../config/stripe.config";
-import { paymentService } from "./payment.service";
-import { UserRole } from "../../middlewares/auth";
+import { stripe } from "../../../config/stripe.config.js";
+import { paymentService } from "./payment.service.js";
+import { UserRole } from "../../middlewares/auth.js";
 
 // const initiatePayment = async (req: Request, res: Response) => {
 //   try {

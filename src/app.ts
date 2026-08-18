@@ -1,15 +1,14 @@
 import express, { Application, Request, Response } from "express";
 import cors from "cors";
-import { auth } from "./lib/auth";
+import { auth } from "./lib/auth.js";
 import { toNodeHandler } from "better-auth/node";
-import { indexRoutes } from "./app/routes";
-import { paymentController } from "./app/module/payment/payment.controller";
+import { indexRoutes } from "./app/routes/index.js";
+import { paymentController } from "./app/module/payment/payment.controller.js";
 
 const app: Application = express();
 export const PORT = process.env.PORT || 5000;
 const allowedOrigins = [
-  process.env.BETTER_AUTH_URL ||
-    "https://psychology-support-backend.vercel.app",
+  process.env.BETTER_AUTH_URL,
   process.env.BETTER_AUTH_TRUSTED_ORIGINS, // Production frontend URL
 ].filter(Boolean);
 

@@ -1,4 +1,4 @@
-import app, { PORT } from "./app";
+import app, { PORT } from "./app.js";
 
 const bootstrap = () => {
   try {
