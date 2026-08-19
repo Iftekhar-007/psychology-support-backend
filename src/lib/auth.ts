@@ -11,7 +11,8 @@ export const auth = betterAuth({
 
   trustedOrigins: [
     "http://localhost:3000",
-    "http://localhost:5000", // your Next.js frontend
+    "https://psycho-support-frontend.vercel.app",
+    "http://localhost:5000",
   ],
 
   emailAndPassword: {

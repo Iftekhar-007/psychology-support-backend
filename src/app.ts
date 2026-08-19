@@ -9,6 +9,7 @@ const app: Application = express();
 export const PORT = process.env.PORT || 5000;
 const allowedOrigins = [
   process.env.BETTER_AUTH_URL,
+  "https://psychology-support-backend-2ej8dc67c-iftekhar-007s-projects.vercel.app",
   process.env.BETTER_AUTH_TRUSTED_ORIGINS, // Production frontend URL
 ].filter(Boolean);
 
