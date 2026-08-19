@@ -10,6 +10,12 @@ router.get(
   userController.getMyProfile,
 );
 
+router.get(
+  "/me/status",
+  authMiddle(UserRole.patient, UserRole.psychologist, UserRole.admin),
+  userController.getMyStatus,
+);
+
 router.patch(
   "/me",
   authMiddle(UserRole.patient, UserRole.psychologist, UserRole.admin),

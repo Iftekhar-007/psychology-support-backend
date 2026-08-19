@@ -64,7 +64,49 @@ const updateMyProfile = async (userId: string, payload: UpdateUserProfile) => {
   throw new Error("Profile update not supported for this role.");
 };
 
+const getMyStatus = async (userId: string) => {
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    select: {
+      id: true,
+      role: true,
+    },
+  });
+
+  if (!user) {
+    throw new Error("User not found.");
+  }
+
+  let hasPatientProfile = false;
+  let hasPsychologistProfile = false;
+
+  if (user.role === UserRoles.PATIENT) {
+    const patient = await prisma.patient.findUnique({
+      where: { userId },
+      select: { id: true },
+    });
+
+    hasPatientProfile = !!patient;
+  }
+
+  if (user.role === UserRoles.PSYCHOLOGIST) {
+    const psychologist = await prisma.psychologist.findUnique({
+      where: { userId },
+      select: { id: true },
+    });
+
+    hasPsychologistProfile = !!psychologist;
+  }
+
+  return {
+    role: user.role,
+    hasPatientProfile,
+    hasPsychologistProfile,
+  };
+};
+
 export const userServices = {
   getMyProfile,
   updateMyProfile,
+  getMyStatus,
 };

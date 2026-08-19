@@ -63,11 +63,33 @@ app.use(express.json());
 //   }),
 // );
 
+// app.use(
+//   cors({
+//     origin: allowedOrigins,
+//     credentials: true,
+//     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+//     allowedHeaders: ["Content-Type", "Authorization"],
+//   }),
+// );
+
 app.use(
   cors({
-    origin: allowedOrigins,
+    origin: (origin, callback) => {
+      if (!origin) {
+        return callback(null, true);
+      }
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error(`Origin ${origin} not allowed by CORS`));
+    },
+
     credentials: true,
+
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+
     allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );

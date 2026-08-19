@@ -29,7 +29,26 @@ const updateMyProfile = async (req: Request, res: Response) => {
   }
 };
 
+const getMyStatus = async (req: Request, res: Response) => {
+  try {
+    const user = req.user;
+
+    const data = await userServices.getMyStatus(user?.id as string);
+
+    res.status(200).json({
+      success: true,
+      data,
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
 export const userController = {
   getMyProfile,
   updateMyProfile,
+  getMyStatus,
 };
