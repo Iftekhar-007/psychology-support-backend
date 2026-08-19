@@ -7,11 +7,17 @@ import { paymentController } from "./app/module/payment/payment.controller.js";
 
 const app: Application = express();
 export const PORT = process.env.PORT || 5000;
+// const allowedOrigins = [
+//   process.env.BETTER_AUTH_URL,
+//   "https://psychology-support-backend-2ej8dc67c-iftekhar-007s-projects.vercel.app",
+//   "https://psycho-support-frontend.vercel.app",
+//   "http://localhost:3000", // Production frontend URL
+// ].filter(Boolean);
+
 const allowedOrigins = [
-  process.env.BETTER_AUTH_URL,
-  "https://psychology-support-backend-2ej8dc67c-iftekhar-007s-projects.vercel.app",
-  "https://psycho-support-frontend.vercel.app", // Production frontend URL
-].filter(Boolean);
+  "http://localhost:3000",
+  "https://psycho-support-frontend.vercel.app",
+];
 
 // Middleware to parse incoming JSON payloads
 
@@ -32,28 +38,37 @@ app.use(express.json());
 //   }),
 // );
 
+// app.use(
+//   cors({
+//     origin: (origin, callback) => {
+//       // Allow requests with no origin (mobile apps, Postman, etc.)
+//       if (!origin) return callback(null, true);
+
+//       // Check if origin is in allowedOrigins or matches Vercel preview pattern
+//       const isAllowed =
+//         allowedOrigins.includes(origin) ||
+//         /^https:\/\/next-blog-client.*\.vercel\.app$/.test(origin) ||
+//         /^https:\/\/.*\.vercel\.app$/.test(origin); // Any Vercel deployment
+
+//       if (isAllowed) {
+//         callback(null, true);
+//       } else {
+//         callback(new Error(`Origin ${origin} not allowed by CORS`));
+//       }
+//     },
+//     credentials: true,
+//     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+//     allowedHeaders: ["Content-Type", "Authorization", "Cookie"],
+//     exposedHeaders: ["Set-Cookie"],
+//   }),
+// );
+
 app.use(
   cors({
-    origin: (origin, callback) => {
-      // Allow requests with no origin (mobile apps, Postman, etc.)
-      if (!origin) return callback(null, true);
-
-      // Check if origin is in allowedOrigins or matches Vercel preview pattern
-      const isAllowed =
-        allowedOrigins.includes(origin) ||
-        /^https:\/\/next-blog-client.*\.vercel\.app$/.test(origin) ||
-        /^https:\/\/.*\.vercel\.app$/.test(origin); // Any Vercel deployment
-
-      if (isAllowed) {
-        callback(null, true);
-      } else {
-        callback(new Error(`Origin ${origin} not allowed by CORS`));
-      }
-    },
+    origin: allowedOrigins,
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization", "Cookie"],
-    exposedHeaders: ["Set-Cookie"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
 
